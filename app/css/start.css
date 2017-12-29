@@ -1,0 +1,63 @@
+@font-face {
+    font-family: SF;
+    src: url("../res/fonts/SFPro-Light.otf");
+}
+
+@font-face {
+    font-family: SF;
+    src: url("../res/fonts/SFPro-Medium.otf");
+    font-weight: bold;
+}
+
+html, body {
+    font-family: SF;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+button {
+    box-shadow: 0;
+    border: none;
+    background: #E4AF09;
+    border-radius: 8px;
+    height: 10%;
+    width: 76.8%;
+    text-align: center;
+    margin-left: 11.6%;
+    margin-right: 11.6%;
+    margin-bottom:8px;
+    padding: 0;
+}
+
+#button_inloggen {
+    box-shadow: 0;
+    border: none;
+    background: #007AFF;
+    border-radius: 8px;
+}
+
+#button_inloggen > a {
+    font-family: SF;
+    font-size: 2.5em;
+    color: #FFFFFF;
+    letter-spacing: -0.48px;
+    text-decoration: none;
+}
+
+#button_client > a {
+    font-family: SF;
+    font-size: 2.5em;
+    color: #FFFFFF;
+    letter-spacing: -0.48px;
+    text-decoration: none;
+}
+
+#button_gebruiker > a {
+    font-family: SF;
+    font-size: 2.5em;
+    color: #FFFFFF;
+    letter-spacing: -0.48px;
+    text-decoration: none;
+}
