@@ -19,16 +19,14 @@
 					<h1 class="text">Deze Dementie App is cool</h1>
 					<p class="text">asdf</p>
 				</div>
-				<div>
-					<img id="previewimg" src="http://placehold.it/180" alt="your image" />
-					<input type="file" value="pictogram" name="pictogram" accept="image/*" onchange="readURL(this);" required>
-				</div>
+				<img id="previewimg" src="http://placehold.it/180" alt="your image" />
+				<input type="file" value="pictogram" name="pictogram" accept="image/*" onchange="readURL(this);" required>
 				<input type="text" placeholder="Vul hier de titel in" name = "titel" required>
 				<input type="text" placeholder="Vul hier de inhoud in" name = "inhoud" required>
 			</div>
 			<input type="submit" value="Verstuur">
 		</form>
-	<!--	<textarea rows="4" cols="50" name="inhoud" id="inhoud" form="form1" required></textarea> --><!--
+
 		<?php
 			if (!strcmp($_SESSION['gebruikersnaam'], "")) {
 				header("Location: inloggen.php");
@@ -40,7 +38,7 @@
 				$ftp_server = "127.0.0.1";
 				$ftp_user_name = "daemon";
 				$ftp_user_pass = "140Thomas_Timo851";
-				$destination_file = "pws/timotankwagen.github.io/app/res/img/";
+				$destination_file = "pws/pws/app/res/img/";
 				$source_file = realpath($_FILES['pictogram']['tmp_name']);
 				$file_name=$_FILES['pictogram']['name'];
 
@@ -62,6 +60,11 @@
 					$destination_file .= $_FILES['pictogram']['name'];
 				}
 
+				echo "Source:";
+				echo $source_file;
+				echo "Dest:";
+				echo $destination_file;
+
 				$upload = ftp_put($conn_id, $destination_file, $source_file, FTP_BINARY);
 				if (!$upload) {
 						echo "FTP upload has failed!<br>";
@@ -76,7 +79,7 @@
 				$afzender_gebruikersnaam=$_SESSION['gebruikersnaam'];
 				$client_code=555;
 				$titel=$_POST['titel'];
-				$inhoud="test";
+				$inhoud=$_POST['inhoud'];
 
 				if(strcmp($_SESSION['gebruikersnaam'], ""))
 				{
@@ -95,6 +98,6 @@
 
 	      		$close = mysqli_close($verbinding);
 			}
-		?>-->
+		?>
 	</body>
 </html>

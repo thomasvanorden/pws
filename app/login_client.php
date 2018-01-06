@@ -13,7 +13,7 @@
 			<label>Geboortedatum</label>
             <input type = "text" placeholder="Vul hier je client_code in" name = "client_code" required> <!--Number field geeft die rare pijltjes, misschien text van maken?-->
 			<input type = "submit" value = "Verstuur">
-		</form><!--
+		</form>
         <?php
 		if (!EMPTY($_POST)) {
 			$geboortedatum = $_POST["geboortedatum"];
@@ -35,6 +35,6 @@
 			}
 		}
 	}
-		?>-->
+		?>
 	</body>
 </html>

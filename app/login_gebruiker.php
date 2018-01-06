@@ -28,7 +28,7 @@
 				*/
 			$resultaat = mysqli_query($verbinding, $query);
 			while ($row= mysqli_fetch_array($resultaat)){
-				if (password_verify($_POST["password"], $row['wachtwoord']) {
+				if (password_verify($_POST["password"], $row['wachtwoord'])) {
 					$_SESSION['gebruikersnaam'] = $row['gebruikersnaam'];
 					echo "Ingelogd.";
 					header("Location: form_notificatie.php");

@@ -98,8 +98,8 @@ form {
 }
 
 form > input {
-    display: block;
-    width: 100%;
+  display: block;
+  width: 100%;
 }
 
 form > input[type=text], form > input[type=password], form > input[type=email], form > input[type=date], form > input[type=submit] {
@@ -111,9 +111,19 @@ form > input[type=text], form > input[type=password], form > input[type=email], 
     border-radius: 16px;
 }
 
+form > input[type=text]::placeholder, form > input[type=password]::placeholder, form > input[type=email]::placeholder, form > input[type=date]::placeholder {
+    color: #585858;
+}
+
+form > input[type="radio"] {
+  width: auto;
+  display: inline-block;
+  margin: 0.45% 0.4%;
+}
+
 form > input[type=submit] {
     background: #007AFF;
-
+    margin-top:1.5%;
     font-family: SF;
     font-size: 1.25em;
     color: #FFFFFF;
