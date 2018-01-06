@@ -7,37 +7,32 @@
 	<title>DementieApp</title>
 </head>
 	<body>
-        <br>
-        Hoi dit is het inlog-/registreerscherm.     <br>
-        Hier start iedereen als eerste.             <br>
-        Daarna kan je worden doorverwezen naar:     <br>
-        - inlogscherm                               <br>
-            -familie/verzorger ingelogd --> notificiatie form <br>
-            -client ingelogd --> client homesreen (home.php buiten mapje app)<br>
-        - registratie familie/verzorger             <br>
-        - registratie client                        <br>
-        <br><br><br>
-            Welkom bij Dementie App <br>
-            Een fantastische app om het leven<br>
-            met dementie makkelijker te maken.
-            <br><br>
-            Overzichtelijk<br>
-            Slechts één melding tegelijk <br>
-            in beeld. Voorkomt verwarring.
-            <br><br>
-            Voor de patiënt<br>
-            Gemaakt voor de patiënt. <br>
-            Met een aanpasbare feed.
-        <br><br><br><br>
+        <h1>Welcome to <span class="text_yellow">Dementie App</span></h1>
+        Een fantastische app om het leven<br/>
+        met dementie makkelijker te maken.
+		<div id="features">
+			<div class="feature">
+				<img src="./res/img/test.png"/>
+				<h2>Overzichtelijk</h2>
+				<p>
+		            Slechts één melding tegelijk<br/>
+		            in beeld. Voorkomt verwarring.
+				</p>
+			</div>
+			<div class="feature">
+				<img src="./res/img/test.png"/>
+				<h2>Voor de patiënt</h2>
+				<p>
+		            Gemaakt voor de patiënt.<br/>
+		            Met een aanpasbare feed.
+				</p>
+			</div>
+		</div>
 
-        <button id="button_inloggen">
-         <a href="./inloggen.php">Inloggen</a>
-        </button>
-        <button id="button_client">
-            <a href="./form_client.php">Patiënt registreren</a>
-        </button>
-        <button id="button_gebruiker">
-            <a href="./form_gebruiker.php">Familielid/verzorger registreren</a>
-        </button>
+		<div id="buttons">
+	    	<a class="background_blue" href="./inloggen.php">Inloggen</a>
+	        <a class="background_yellow" href="./form_client.php">Patiënt registreren</a>
+	        <a class="background_yellow" href="./form_gebruiker.php">Familielid/verzorger registreren</a>
+		</div>
 	</body>
 </html>

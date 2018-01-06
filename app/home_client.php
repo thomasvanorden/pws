@@ -28,7 +28,7 @@
 						var audio = new Audio(filename);
 					audio.play();
 					}
-				</script>
+				</script><!--
 			<?php
 				function createTTSAudio($message)
 				{
@@ -83,7 +83,7 @@
 					createNotification($row['titel'], $row['inhoud'], $row['pictogram'], $row['tijd']);
 				}
 				echo "</div>"
-			?>
+			?>-->
 
 			<script>
 				function showSlides() {
@@ -102,9 +102,9 @@
 
 			</script>
 			<div class="widget">
-					<img src="./res/img/test.jpg"/>
-					<h1 class="text">$title</h1>
-					<p class="text">$content</p>
-				</div>
+				<img src="./res/img/test.jpg"/>
+				<h1 class="text">$title</h1>
+				<p class="text">$content</p>
+			</div>
 	</body>
 </html>

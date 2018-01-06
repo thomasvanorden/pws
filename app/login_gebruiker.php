@@ -2,14 +2,16 @@
 <!DOCTYPE html>
 <html lang="nl">
 	<head>
-		<title>Inloggen gebruiker</title>
 		<meta charset="utf-8">
+		<title>Inloggen gebruiker</title>
+		<link rel="stylesheet" type="text/css" href="./css/start.css"/>
 	</head>
 	<body>
-		<form name="form1" method="post" action ="">
+		<form id="form" name="form1" method="post" action ="">
+			<label>Gebruikersnaam</label>
             <input type = "text" placeholder="Vul hier je gebruikersnaam in" name = "gebruikersnaam" required>
+			<label>Wachtwoord</label>
             <input type = "password" placeholder="Vul hier je wachtwoord in" name = "password" required>
-			<input type = "reset" value = "Reset">
 			<input type = "submit" value = "Verstuur">
 		</form>
         <?php

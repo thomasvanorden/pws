@@ -11,53 +11,179 @@
 
 html, body {
     font-family: SF;
-    height: 100%;
-    width: 100%;
-    padding: 0;
+    height: 94.2%;
+    width: 85%;
+    padding: 10px;
     margin: 0;
+//  text-align: center;
+    margin-top: 2.9%;
+    margin-left: 5.8%;
+    margin-right: 5.8%;
 }
 
-button {
+#features {
+    margin: 25px 0px;
+    width: 100%;
+    overflow: auto;
+}
+
+.feature {
+    float: left;
+    margin: 0px;
+    padding: 0px 0px;
+}
+
+.feature > p, .feature > h2 {
+    font-size: 1.1em;
+    margin-left: 30%;
+    margin-top: 3%;
+}
+
+.feature > img {
+    width: 17.5%;
+    float: left;
+    margin: 2% 6% 2% 10%;
+}
+
+h1 {
+    font-size: 2.75em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+a {
+    display: block;
+
     box-shadow: 0;
     border: none;
-    background: #E4AF09;
+    background: #AAAAAA;
     border-radius: 8px;
-    height: 10%;
-    width: 76.8%;
+//  width: 76.8%;
+    width: 100%;
     text-align: center;
-    margin-left: 11.6%;
-    margin-right: 11.6%;
-    margin-bottom:8px;
-    padding: 0;
+//  margin-left: 11.6%;
+//  margin-right: 11.6%;
+    margin-top: -8%;
+    margin-bottom:9%;
+    padding: 16px 0px;
+
+    font-family: SF;
+    font-size: 1.25em;
+    color: #FFFFFF;
+    letter-spacing: -0.48px;
+    text-decoration: none;
 }
 
-#button_inloggen {
-    box-shadow: 0;
-    border: none;
+#buttons {
+    margin-top: 10%;
+    height: 100%;
+}
+
+.text_yellow {
+    color: #E4AF09;
+}
+
+.background_blue {
     background: #007AFF;
-    border-radius: 8px;
 }
 
-#button_inloggen > a {
+.background_yellow {
+    background: #E4AF09;
+}
+
+/////////////////////////////////////////////////////////////
+
+form {
+    width: 100%;
+}
+
+form > input {
+    display: block;
+    width: 100%;
+}
+
+form > input[type=text], form > input[type=password], form > input[type=email], form > input[type=date], form > input[type=submit] {
+    background: #AAAAAA;
+    padding: 12px 20px;
+    margin: 4px 0 16px 0;
+    box-sizing: border-box;
+    border: 0px;
+    border-radius: 16px;
+}
+
+form > input[type=submit] {
+    background: #007AFF;
+
     font-family: SF;
-    font-size: 2.5em;
+    font-size: 1.25em;
     color: #FFFFFF;
     letter-spacing: -0.48px;
     text-decoration: none;
 }
 
-#button_client > a {
-    font-family: SF;
-    font-size: 2.5em;
-    color: #FFFFFF;
-    letter-spacing: -0.48px;
-    text-decoration: none;
+#form_notificatie {
+    height: 100%;
 }
 
-#button_gebruiker > a {
-    font-family: SF;
-    font-size: 2.5em;
-    color: #FFFFFF;
-    letter-spacing: -0.48px;
-    text-decoration: none;
+#previewimg {
+//    float: left;
+    width: 368px;
+    height: 368px;
+    position: relative;
+}
+
+.notification input[type=file] {
+	display: block;
+    position: absolute;
+    left: -10px;
+    top: 400px;
+	margin: 16px;
+}
+
+.notification input[type=text] {
+    font-size: 48px;
+    margin: 4px 0px 2px 10px;
+    color: #000000;
+    letter-spacing: -0.53px;
+}
+
+.notification {
+    display: block;
+    position: relative;
+    border-radius: 4px;
+    background: blue;
+    border-radius: 12px;
+    width: 90%;
+    height: 100%;
+    margin: 32px 4%;
+}
+
+.notifheader {
+    border-radius: 4px 4px 0px 0px;
+    height: 80px;
+    letter-spacing: -0.08px;
+    background: red;
+}
+
+.notifheader > img {
+    height: 64px;
+    width: 64px;
+    float: left;
+    margin: 8px;
+}
+
+.notifheader > h1 {
+    font-size: 48px;
+    display: inline-block;
+    margin: 0px 8px;
+    line-height: 80px;
+    color: #8A8A8F;
+    letter-spacing: -0.08px;
+}
+
+.notifheader > p {
+    font-size: 24px;
+    line-height: 80px;
+    float: right;
+    margin-right: 28px;
 }

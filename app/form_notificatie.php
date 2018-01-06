@@ -2,21 +2,33 @@
 <!DOCTYPE html>
 <html lang="nl">
 	<head>
-		<title>Form_notificatie</title>
 		<meta charset="utf-8">
+		<title>Form_notificatie</title>
+		<link rel="stylesheet" type="text/css" href="./css/start.css"/>
 		<?php
 			$verbinding = mysqli_connect("localhost","root","140Thomas_Timo851","pws");
 		?>
-
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="./js/imgpreview.js"></script>
 	</head>
 	<body>
-		<form name="form1" method="post" action ="" enctype="multipart/form-data">
-			<input type = "text" placeholder="Vul hier de titel in" name = "titel" required>
-			<p><input type = "file" value="pictogram" name ="pictogram" accept="image/*"></p>
-			<input type = "reset" value = "Reset">
-			<input type = "submit" value = "Verstuur">
+		<form id="form_notificatie" name="form1" method="post" action ="" enctype="multipart/form-data">
+			<div class="notification">
+				<div class="notifheader">
+					<img src="./res/img/test.png" width=256px/>
+					<h1 class="text">Deze Dementie App is cool</h1>
+					<p class="text">asdf</p>
+				</div>
+				<div>
+					<img id="previewimg" src="http://placehold.it/180" alt="your image" />
+					<input type="file" value="pictogram" name="pictogram" accept="image/*" onchange="readURL(this);" required>
+				</div>
+				<input type="text" placeholder="Vul hier de titel in" name = "titel" required>
+				<input type="text" placeholder="Vul hier de inhoud in" name = "inhoud" required>
+			</div>
+			<input type="submit" value="Verstuur">
 		</form>
-	<!--	<textarea rows="4" cols="50" name="inhoud" id="inhoud" form="form1" required></textarea> -->
+	<!--	<textarea rows="4" cols="50" name="inhoud" id="inhoud" form="form1" required></textarea> --><!--
 		<?php
 			if (!strcmp($_SESSION['gebruikersnaam'], "")) {
 				header("Location: inloggen.php");
@@ -83,6 +95,6 @@
 
 	      		$close = mysqli_close($verbinding);
 			}
-		?>
+		?>-->
 	</body>
 </html>

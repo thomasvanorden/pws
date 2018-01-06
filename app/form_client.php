@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="nl">
 	<head>
-		<title>Form_client</title>
 		<meta charset="utf-8">
+		<title>Form_client</title>
+		<link rel="stylesheet" type="text/css" href="./css/start.css"/>
 	</head>
 	<body>
 		<form name="form1" method="post" action ="">
+			<label>Voornaam</label>
 			<input type = "text" placeholder="Vul hier je voornaam in" name = "voornaam" required>
+			<label>Tussenvoegsel</label>
 			<input type = "text" placeholder="Vul hier je tussenvoegsel in" name = "tussenvoegsel">
+			<label>Achternaam</label>
 			<input type = "text" placeholder="Vul hier je achternaam in" name = "achternaam" required>
-			<input type = "date" placeholder="Vul hier je geboortedatum in" name = "geboortedatum">
-<!--		<input type = "number" placeholder="Vul hier je client-code in" name = "client_code" required>-->
-			<input type = "reset" value = "Reset">
-			<input type = "submit" value = "Verstuur">
+			<label>Geboortedatum</label>
+			<input type = "date" placeholder="Vul hier je geboortedatum in" name = "geboortedatum" required>
+			<input type="submit" value="Verstuur">
 		</form>
         <?php
 		if (!EMPTY($_POST)) {

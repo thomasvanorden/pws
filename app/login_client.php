@@ -2,16 +2,18 @@
 <!DOCTYPE html>
 <html lang="nl">
 	<head>
-		<title>Inloggen client</title>
 		<meta charset="utf-8">
+		<title>Inloggen client</title>
+		<link rel="stylesheet" type="text/css" href="./css/start.css"/>
 	</head>
 	<body>
 		<form name="form1" method="post" action ="">
+			<label>Geboortedatum</label>
             <input type = "date" placeholder="Vul hier je geboortedatum in jjjj-mm-dd" name = "geboortedatum" required>
-            <input type = "number" placeholder="Vul hier je client_code in" name = "client_code" required>
-			<input type = "reset" value = "Reset">
+			<label>Geboortedatum</label>
+            <input type = "text" placeholder="Vul hier je client_code in" name = "client_code" required> <!--Number field geeft die rare pijltjes, misschien text van maken?-->
 			<input type = "submit" value = "Verstuur">
-		</form>
+		</form><!--
         <?php
 		if (!EMPTY($_POST)) {
 			$geboortedatum = $_POST["geboortedatum"];
@@ -33,6 +35,6 @@
 			}
 		}
 	}
-		?>
+		?>-->
 	</body>
 </html>

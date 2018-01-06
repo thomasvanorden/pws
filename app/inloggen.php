@@ -2,11 +2,12 @@
 <!DOCTYPE html>
 <html lang="nl">
 	<head>
-		<title>Inloggen</title>
 		<meta charset="utf-8">
+		<title>Inloggen</title>
+		<link rel="stylesheet" type="text/css" href="./css/start.css"/>
 	</head>
 	<body>
-		<button id="button_familie"><a href="./login_gebruiker.php">Inloggen als familielid</a></button>
-		<button id="button_client"><a href="./login_client.php">Inloggen als client</a></button>
+		<a href="./login_gebruiker.php">Inloggen als familielid</a>
+		<a href="./login_client.php">Inloggen als client</a>
 	</body>
 </html>
