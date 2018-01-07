@@ -7,7 +7,10 @@
 		<link rel="stylesheet" type="text/css" href="./css/start.css"/>
 	</head>
 	<body>
-		<a href="./login_gebruiker.php">Inloggen als familielid</a>
-		<a href="./login_client.php">Inloggen als client</a>
+		<img id="entryimg" src="./res/img/evertenevelien.jpg"/>
+		<div id="buttons">
+			<a class="background_blue" href="./login_gebruiker.php">Inloggen als familielid</a>
+			<a class="background_yellow" href="./login_client.php">Inloggen als client</a>
+		</div>
 	</body>
 </html>

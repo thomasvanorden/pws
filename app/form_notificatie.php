@@ -13,17 +13,14 @@
 	</head>
 	<body>
 		<form id="form_notificatie" name="form1" method="post" action ="" enctype="multipart/form-data">
-			<div class="notification">
-				<div class="notifheader">
-					<img src="./res/img/test.png" width=256px/>
-					<h1 class="text">Deze Dementie App is cool</h1>
-					<p class="text">asdf</p>
-				</div>
-				<img id="previewimg" src="http://placehold.it/180" alt="your image" />
+			<div id="selectimg">
+				<img id="previewimg" src="http://placehold.it/128?text=Pictogram" alt="your image"/>
 				<input type="file" value="pictogram" name="pictogram" accept="image/*" onchange="readURL(this);" required>
-				<input type="text" placeholder="Vul hier de titel in" name = "titel" required>
-				<input type="text" placeholder="Vul hier de inhoud in" name = "inhoud" required>
 			</div>
+			<label>Titel</label>
+			<input type="text" placeholder="Vul hier de titel in" name = "titel" required>
+			<label>Inhoud</label>
+			<input type="text" placeholder="Vul hier de inhoud in" name = "inhoud" required>
 			<input type="submit" value="Verstuur">
 		</form>
 

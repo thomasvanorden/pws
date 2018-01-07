@@ -24,9 +24,9 @@
 			<p><input type = "submit" value = "Verstuur"></p>
 		</form>
 		<script>
-			function playAudio(filename) {
-//				var audioFile = new Audio(filename);
-//				audioFile.play();
+			function playAudio(notifnode) {
+		        var audio = notifnode.getElementsByTagName('audio')[0];
+		        audio.play();
 			}
 		</script>
 		<?php
@@ -52,19 +52,17 @@
 				$appimg_path = "./res/img/test.jpg";
 				$icon_path = "./res/img/" . $icon_name;
 				echo "
-				<div class=\"notification\">
-						<div class=\"notifheader\">
-							<img src=\"$appimg_path\" width=256px/>
-							<h1 class=\"text\">Deze Dementie App is cool</h1>
-							<p class=\"text\"><br/>$time</p>
-						</div>
-						<img src=\"$icon_path\"/>
-						<h1 class=\"text\">$title</h1>
-						<p class=\"text\">$content</p>
-						<button action=\"playAudio($ttsFile);\">
-						Speel godverdomme af
-						</button>
-					</div>";
+				<div class=\"notification\" onclick=\"playAudio(this);\">
+					<audio src=\"$ttsFile\"></audio>
+					<div class=\"notifheader\">
+						<img src=\"$appimg_path\" width=256px/>
+						<h1 class=\"text\">Deze Dementie App is cool</h1>
+						<p class=\"text\"><br/>$time</p>
+					</div>
+					<img src=\"$icon_path\"/>
+					<h1 class=\"text\">$title</h1>
+					<p class=\"text\">$content</p>
+				</div>";
 			}
 		?>
 		<?php
