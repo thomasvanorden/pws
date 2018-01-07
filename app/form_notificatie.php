@@ -12,9 +12,9 @@
 		<script src="./js/imgpreview.js"></script>
 	</head>
 	<body>
-		<form id="form_notificatie" name="form1" method="post" action ="" enctype="multipart/form-data">
+		<form name="form1" method="post" action ="" enctype="multipart/form-data">
 			<div id="selectimg">
-				<img id="previewimg" src="http://placehold.it/128?text=Pictogram" alt="your image"/>
+				<img src="http://placehold.it/128?text=Pictogram" alt="your image"/>
 				<input type="file" value="pictogram" name="pictogram" accept="image/*" onchange="readURL(this);" required>
 			</div>
 			<label>Titel</label>

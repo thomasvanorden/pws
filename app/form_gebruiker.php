@@ -26,8 +26,8 @@
 			<label>Clientcode</label>
 			<input type = "text" placeholder="Vul hier je client-code in" name = "client_code" required> <!--text/number field-->
 			<label>Ben je een verzorger of een familielid?</label><br/>
-			<input type = "radio" placeholder="true" name = "isverzorger" required>Ik ben een verzorger</input><br/>
-			<input type = "radio" placeholder="false" name = "isverzorger" required>Ik ben een familielid</input><br/><br/>
+			<label><input type = "radio" placeholder="true" name = "isverzorger" required>Ik ben een verzorger</label><br/>
+			<label><input type = "radio" placeholder="false" name = "isverzorger" required>Ik ben een familielid</label><br/><br/>
 			<label>Profielfoto</label>
 			<input type = "file" placeholder="Selecteer je profielfoto" name = "profielfoto">
 			<input type = "submit" value = "Verstuur">

@@ -1,5 +1,13 @@
 :root {
     --text-color: #333333;
+
+    --button-font-color: #FFFFFF;
+    --button-font-size: 1.25em;
+    --button-radius: 8px;
+    --button-padding: 16px 0px;
+    --button-font-letter-spacing: -0.48px;
+
+    --form-icon-size: 128px;
 }
 
 @font-face {
@@ -14,6 +22,7 @@
 }
 
 html {
+    background: #FFFFFF;
     font-family: SF;
     padding: 20px;
 }
@@ -34,8 +43,6 @@ body {
 
 .feature {
     float: left;
-    margin: 0px;
-    padding: 0px 0px;
 }
 
 .feature > p, .feature > h2 {
@@ -61,14 +68,14 @@ a {
 
     border: none;
     background: #AAAAAA;
-    border-radius: 8px;
+    border-radius: var(--button-radius);
     text-align: center;
-    margin: 4px 0;//11.6%;
-    padding: 16px 0px;
+    margin: 6px 0;//11.6%;
+    padding: var(--button-padding);
 
-    font-size: 1.25em;
-    color: #FFFFFF;
-    letter-spacing: -0.48px;
+    font-size: var(--button-font-size);
+    color: var(--button-font-color);
+    letter-spacing: var(--button-font-letter-spacing);
     text-decoration: none;
 }
 
@@ -92,12 +99,12 @@ form > input {
 }
 
 form > input[type=text], form > input[type=password], form > input[type=email], form > input[type=date], form > input[type=submit] {
-    background: #AAAAAA;
+    background: #BBBBBB;
     padding: 12px 20px;
     margin: 4px 0 16px 0;
     box-sizing: border-box;
-    border: 0px;
-    border-radius: 16px;
+    border: 0;
+    border-radius: 8px;
 }
 
 form > input[type=text]::placeholder, form > input[type=password]::placeholder, form > input[type=email]::placeholder, form > input[type=date]::placeholder {
@@ -114,27 +121,25 @@ form > input[type=submit] {
     background: #007AFF;
     margin-top:1.5%;
     font-family: SF;
-    font-size: 1.25em;
-    color: #FFFFFF;
-    letter-spacing: -0.48px;
+    font-size: var(--button-font-size);
+    color: var(--button-font-color);
+    letter-spacing: var(--button-font-letter-spacing);
     text-decoration: none;
     cursor: pointer;
-}
-
-#form_notificatie {
-//    height: 100%;
+    border-radius: var(--button-radius);
+    padding: var(--button-padding);
 }
 
 #selectimg {
     display: block;
-    width: 128px;
-    height: 128px;
+    width: var(--form-icon-size);
+    height: var(--form-icon-size);
     margin: 16px auto;
 }
 
 #selectimg img {
-    width: 128px;
-    height: 128px;
+    width: var(--form-icon-size);
+    height: var(--form-icon-size);
     position: absolute;
     border-radius: 50%;
     z-index: 0;
@@ -143,8 +148,8 @@ form > input[type=submit] {
 #selectimg input {
     opacity: 0;
     position: absolute;
-    width: 128px;
-    height: 128px;
+    width: var(--form-icon-size);
+    height: var(--form-icon-size);
     z-index: 1;
 }
 
