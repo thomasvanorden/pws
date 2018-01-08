@@ -14,11 +14,11 @@
 		<title>Home</title>
 	</head>
 	<body onload="startTime()">
-		<script src="./js/time.js"></script>
 		<div id="timedate">
 			<h1></h1>
 			<p></p>
 		</div>
+		<script src="./js/time.js"></script>
 		<form name="form1" method="post" action ="">
 			<p><input type = "text" placeholder="vul hier ff een message nummertje in" name="klm"></p>
 			<p><input type = "submit" value = "Verstuur"></p>
@@ -26,9 +26,23 @@
 		<script>
 			function playAudio(notifnode) {
 		        var audio = notifnode.getElementsByTagName('audio')[0];
+				audio.src = 'https://translate.google.com/translate_tts?ie=UTF-8&q='
+						  + notifnode.getElementsByTagName('h1')[1].innerHTML + "..."
+						  + notifnode.getElementsByTagName('p')[1].innerHTML + '&tl=nl&client=tw-ob';
 		        audio.play();
 			}
 		</script>
+		<div class="notification" onclick="playAudio(this);">
+			<audio src="./audio/268ada6d934c253a3188ccff78c2b3a5.mp3"></audio>
+			<div class="notifheader">
+				<img src="./res/img/test.png" width=256px/>
+				<h1 class="text">Deze Dementie App is cool</h1>
+				<p class="text"><br/>12:34</p>
+			</div>
+			<img src="./res/img/test.png"/>
+			<h1 class="text">Koffie</h1>
+			<p class="text">Hallo Bert, we komen vanmiddag ff lekker een kopje koffie met je drinken. We zijn er rond 2uur. asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdfasdfga</p>
+		</div><!--
 		<?php
 			function createTTSAudio($message)
 			{
@@ -81,7 +95,7 @@
 				createNotification($row['titel'], $row['inhoud'], $row['pictogram'], $row['tijd']);
 			}
 			echo "</div>"
-		?>
+		?>-->
 
 		<script>
 			function showSlides()
@@ -108,7 +122,7 @@
 			<p class="text">$content</p>
 		</div>
 
-			<script src="./js/widgets.js"></script>
+		<script src="./js/widgets.js"></script>
 
 		<div class="widget" id="widget_weather">
 			<img src="./res/img/test.png"/>

@@ -23,20 +23,23 @@
 
 html {
     background: #FFFFFF;
-    font-family: SF;
-    padding: 20px;
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
 }
 
 body {
+    width: 88.4% - 40px;
+    font-family: SF;
     color: var(--text-color);
-    width: 88.4%;
     margin-top: 2.9%;
     margin-left: 5.8%;
     margin-right: 5.8%;
+    padding: 20px;
 }
 
 #features {
-    margin: 25px 0px;
+    margin: 24px 0px 0px 0px;
     width: 100%;
     overflow: auto;
 }
@@ -47,8 +50,12 @@ body {
 
 .feature > p, .feature > h2 {
     font-size: 1.1em;
-    margin-left: 30%;
+    margin-left: 35%;
     margin-top: 3%;
+}
+
+.feature > h2 {
+    margin-bottom: 0;
 }
 
 .feature > img {
