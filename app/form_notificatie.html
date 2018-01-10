@@ -1,29 +1,79 @@
-<?php session_start();?>
+<!--<?php session_start();?>-->
 <!DOCTYPE html>
 <html lang="nl">
 	<head>
 		<meta charset="utf-8">
 		<title>Form_notificatie</title>
-		<link rel="stylesheet" type="text/css" href="./css/start.css"/>
+		<link rel="stylesheet" type="text/css" href="./css/start.css"/><!--
 		<?php
 			$verbinding = mysqli_connect("localhost","root","140Thomas_Timo851","pws");
-		?>
+		?>-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script src="./js/imgpreview.js"></script>
 	</head>
 	<body>
-		<form name="form1" method="post" action ="" enctype="multipart/form-data">
+		<form id="idform1" name="form1" method="post" action ="#" enctype="multipart/form-data">
 			<div id="selectimg">
 				<img src="http://placehold.it/128?text=Pictogram" alt="your image"/>
-				<input type="file" value="pictogram" name="pictogram" accept="image/*" onchange="readURL(this);" required>
+				<input type="file" value="pictogram" name="pictogram" accept="image/*" onchange="readURL(this);">
 			</div>
 			<label>Titel</label>
 			<input type="text" placeholder="Vul hier de titel in" name = "titel" required>
 			<label>Inhoud</label>
 			<input type="text" placeholder="Vul hier de inhoud in" name = "inhoud" required>
-			<input type="submit" value="Verstuur">
+			<input type="submit" value="Verstuur" id="insert">
 		</form>
-
+		<script type="text/javascript">
+			$("#idform1").submit(function(event){
+			    event.preventDefault();
+			});
+			$(document).ready(function()
+			{
+				alert("ready boii");
+				$("#insert").click(function()
+				{
+					alert("geklikt boii");
+					var titel = document.forms["form1"]["titel"].value;
+					var inhoud = document.forms["form1"]["inhoud"].value;
+					var dataString="titel="+titel+"&inhoud="+inhoud;
+					if($.trim(titel).length>0 & $.trim(inhoud).length>0)
+					{
+						alert("titel of inhoud zijn leeg");
+						$.ajax({
+							type: "POST",
+							url:"https://localhost/pws/pws/server/insert_notificatie.php",
+							data: dataString,
+							dataType: 'text',
+							crossDomain: true,
+							cache: false,
+							beforeSend: function() { $("#insert").val('Connecting...'); },
+							success: function(data)
+								{
+									if(data=="success")
+									{
+										alert("inserted");
+										$("#insert").val('submit');
+									}
+									else if(data=="error")
+									{
+										alert("error");
+									}
+									else
+									{
+										alert("baaa");
+									}
+								}
+							error: function()
+								{
+									alert("errroor boiiii");
+								}
+							});
+					}
+					return false;
+				});
+			});
+		</script>
+<!--
 		<?php
 			if (!strcmp($_SESSION['gebruikersnaam'], "")) {
 				header("Location: inloggen.php");
@@ -95,6 +145,6 @@
 
 	      		$close = mysqli_close($verbinding);
 			}
-		?>
+		?>-->
 	</body>
 </html>
