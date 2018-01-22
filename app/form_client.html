@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<meta charset="utf-8">
+		<title>Form_client</title>
+		<link rel="stylesheet" type="text/css" href="./css/start.css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<form name="form1" method="post" action ="">
+			<label>Voornaam</label>
+			<input type = "text" placeholder="Vul hier je voornaam in" name = "voornaam" required>
+			<label>Tussenvoegsel</label>
+			<input type = "text" placeholder="Vul hier je tussenvoegsel in" name = "tussenvoegsel">
+			<label>Achternaam</label>
+			<input type = "text" placeholder="Vul hier je achternaam in" name = "achternaam" required>
+			<label>Geboortedatum</label>
+			<input type = "date" placeholder="Vul hier je geboortedatum in" name = "geboortedatum" required>
+			<input id="insert" type="submit" value="Verstuur">
+		</form>
+		<script type="text/javascript">
+			$(document).ready(function()
+			{
+				$("#insert").click(function()
+				{
+					var voornaam = document.forms["form1"]["voornaam"].value;
+					var tussenvoegsel = document.forms["form1"]["tussenvoegsel"].value;
+					var achternaam = document.forms["form1"]["achternaam"].value;
+					var geboortedatum = document.forms["form1"]["geboortedatum"].value;
+					var dataString="voornaam="+voornaam+"&tussenvoegsel="+tussenvoegsel+"&achternaam="+achternaam+"&geboortedatum="+geboortedatum;
+	//					if($.trim(titel).length>0 & $.trim(inhoud).length>0)
+					{
+						$.ajax({
+							type: "POST",
+							url:"http://localhost/pws/pws/server/insert_client.php",
+							data: dataString,
+							dataType: 'text', /////// DIT NOG FIXEN AAAAHHHHH
+							crossDomain: true,
+							cache: false,
+							beforeSend: function() { $("#insert").val('Connecting...'); },
+							success: function(data)
+								{
+									if(data=="success")
+									{
+										alert("inserted");
+										$("#insert").val('Success!');
+									}
+									else if(data=="error")
+										alert("error");
+									else
+										alert(data);
+								},
+							error: function(a, b, c)
+								{
+									alert("Er kan geen verbinding met de server worden gelegd.");
+								}
+							});
+					}
+
+					//return false;
+				});
+			});
+		</script>
+	</body>
+</html>

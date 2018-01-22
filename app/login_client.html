@@ -1,0 +1,60 @@
+<?php session_start();?>
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<meta charset="utf-8">
+		<title>Inloggen client</title>
+		<link rel="stylesheet" type="text/css" href="./css/start.css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<form name="form1" method="post" action ="">
+			<label>Geboortedatum</label>
+            <input type = "date" placeholder="Vul hier je geboortedatum in jjjj-mm-dd" name = "geboortedatum" required>
+			<label>Clientcode</label>
+            <input type = "text" placeholder="Vul hier je client_code in" name = "client_code" required> <!--Number field geeft die rare pijltjes, misschien text van maken?-->
+			<input id="insert" type = "submit" value = "Verstuur">
+		</form>
+		<script type="text/javascript">
+			$(document).ready(function()
+			{
+				$("#insert").click(function()
+				{
+					var geboortedatum = document.forms["form1"]["geboortedatum"].value;
+					var client_code = document.forms["form1"]["client_code"].value;
+					var dataString="geboortedatum="+geboortedatum+"&client_code="+client_code;
+	//					if($.trim(titel).length>0 & $.trim(inhoud).length>0)
+					{
+						$.ajax({
+							type: "POST",
+							url:"http://localhost/pws/pws/server/login_client.php",
+							data: dataString,
+							dataType: 'text', /////// DIT NOG FIXEN AAAAHHHHH
+							crossDomain: true,
+							cache: false,
+							beforeSend: function() { $("#insert").val('Connecting...'); },
+							success: function(data)
+								{
+									if(data=="success")
+									{
+										alert("inserted");
+										$("#insert").val('Success!');
+									}
+									else if(data=="error")
+										alert("error");
+									else
+										alert(data);
+								},
+							error: function(a, b, c)
+								{
+									alert("Er kan geen verbinding met de server worden gelegd.");
+								}
+							});
+					}
+
+					//return false;
+				});
+			});
+		</script>
+	</body>
+</html>
