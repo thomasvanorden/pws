@@ -1,0 +1,12 @@
+Array
+(
+    [user] => Thomas
+    [pass] => th
+    [email] => thomasvanorden@live.nl
+    [fname] => Thomas
+    [mname] => 
+    [lname] => Orden
+    [birth] => 2018-01-26
+    [client] => 69
+    [verzorger] => 1
+)

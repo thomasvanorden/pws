@@ -2,11 +2,15 @@
 <html lang="nl">
 	<head>
 		<meta charset="utf-8">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"/>
 		<title>Form_client</title>
 		<link rel="stylesheet" type="text/css" href="./css/start.css"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	</head>
 	<body>
+		<header>
+				<a id="backbtn" href="start.html">&lt;</a>
+		</header>
 		<form name="form1" method="post" action ="">
 			<label>Voornaam</label>
 			<input type = "text" placeholder="Vul hier je voornaam in" name = "voornaam" required>
@@ -15,13 +19,13 @@
 			<label>Achternaam</label>
 			<input type = "text" placeholder="Vul hier je achternaam in" name = "achternaam" required>
 			<label>Geboortedatum</label>
-			<input type = "date" placeholder="Vul hier je geboortedatum in" name = "geboortedatum" required>
+			<input type = "date" placeholder="Vul hier je geboortedatum in" name = "geboortedatum">
 			<input id="insert" type="submit" value="Verstuur">
 		</form>
 		<script type="text/javascript">
 			$(document).ready(function()
 			{
-				$("#insert").click(function()
+				$("#insert").click(function(event)
 				{
 					var voornaam = document.forms["form1"]["voornaam"].value;
 					var tussenvoegsel = document.forms["form1"]["tussenvoegsel"].value;
@@ -32,7 +36,7 @@
 					{
 						$.ajax({
 							type: "POST",
-							url:"http://localhost/pws/pws/server/insert_client.php",
+							url:"http://192.168.178.10/pws/pws/server/insert_client.php",
 							data: dataString,
 							dataType: 'text', /////// DIT NOG FIXEN AAAAHHHHH
 							crossDomain: true,
@@ -40,15 +44,9 @@
 							beforeSend: function() { $("#insert").val('Connecting...'); },
 							success: function(data)
 								{
-									if(data=="success")
-									{
-										alert("inserted");
-										$("#insert").val('Success!');
-									}
-									else if(data=="error")
-										alert("error");
-									else
 										alert(data);
+
+									window.location = "home_client.php";
 								},
 							error: function(a, b, c)
 								{
@@ -56,6 +54,7 @@
 								}
 							});
 					}
+					event.preventDefault();
 
 					//return false;
 				});

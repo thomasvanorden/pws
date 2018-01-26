@@ -3,6 +3,7 @@
 <html lang="nl">
 	<head>
 		<meta charset="utf-8">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"/>
 		<title>Form_notificatie</title>
 		<link rel="stylesheet" type="text/css" href="./css/start.css"/><!--
 		<?php
@@ -12,6 +13,9 @@
 		<script src="./js/imgpreview.js"></script>
 	</head>
 	<body>
+		<header>
+				<a id="backbtn" href="start.html">&lt;</a>
+		</header>
 		<form id="idform1" name="form1" method="post" action ="#" enctype="multipart/form-data">
 			<div id="selectimg">
 				<img src="http://placehold.it/128?text=Pictogram" alt="your image"/>
@@ -30,13 +34,16 @@
 				{
 					var titel = document.forms["form1"]["titel"].value;
 					var inhoud = document.forms["form1"]["inhoud"].value;
-					var dataString="titel="+titel+"&inhoud="+inhoud+"&pictogram=./res/img/test.png";
+					var picpath = document.forms["form1"]["pictogram"].value.replace(/\\/g,"/");
+					picpath = picpath.substring(picpath.lastIndexOf('/')+1);
+					alert(picpath);
+					var dataString="titel="+titel+"&inhoud="+inhoud+"&pictogram="+picpath;
 //					if($.trim(titel).length>0 & $.trim(inhoud).length>0)
 					{
 //						alert("titel of inhoud zijn leeg");
 						$.ajax({
 							type: "POST",
-							url:"http://localhost/pws/pws/server/insert_notificatie.php",
+							url:"http://192.168.178.10/pws/pws/server/insert_notificatie.php",
 							data: dataString,
 							dataType: 'text',
 							crossDomain: true,
@@ -56,12 +63,12 @@
 								},
 							complete: function()
 								{
-									$("#insert").val('Je notificatie is verstuurd!');
+								//	$("#insert").val('Je notificatie is verstuurd!');
 								},
 							error: function(a, b, c)
 								{
 									alert("Helaas kan er geen verbinding met de server tot stand gebracht worden.");
-									alert(a);
+									alert(a.responseText);
 									alert(b);
 									alert(c);
 								}

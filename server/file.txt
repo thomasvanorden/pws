@@ -1,6 +1,6 @@
 Array
 (
     [titel] => 
-    [inhoud] => 
-    [pictogram] => ./res/img/test.png
+    [inhoud] => erwer
+    [pictogram] => 
 )

@@ -3,31 +3,35 @@
 <html lang="nl">
 	<head>
 		<meta charset="utf-8">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"/>
 		<title>Inloggen gebruiker</title>
 		<link rel="stylesheet" type="text/css" href="./css/start.css"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	</head>
 	<body>
+		<header>
+				<a id="backbtn" href="inloggen.html">&lt;</a>
+		</header>
 		<form id="form" name="form1" method="post" action ="">
 			<label>Gebruikersnaam</label>
-            <input type = "text" placeholder="Vul hier je gebruikersnaam in" name = "gebruikersnaam" required>
+            <input type = "text" placeholder="Vul hier je gebruikersnaam in" name="gebruikersnaam" required>
 			<label>Wachtwoord</label>
-            <input type = "password" placeholder="Vul hier je wachtwoord in" name = "password" required>
+            <input type = "password" placeholder="Vul hier je wachtwoord in" name="password" required>
 			<input id="insert" type="submit" value="Verstuur">
 		</form>
 		<script type="text/javascript">
 			$(document).ready(function()
 			{
-				$("#insert").click(function()
+				$("#insert").click(function(event)
 				{
-					var gebruikersnaam = document.forms["form1"]["gebruikersnaam"].value;
-					var password = document.forms["form1"]["password"].value;
-					var dataString="gebruikersnaam="+gebruikersnaam+"&password="+password;
-	//					if($.trim(titel).length>0 & $.trim(inhoud).length>0)
+					var user = document.forms["form1"]["gebruikersnaam"].value;
+					var pass = document.forms["form1"]["password"].value;
+					var dataString="user="+user+"&pass="+pass;
+//					if($.trim(titel).length>0 & $.trim(inhoud).length>0)
 					{
 						$.ajax({
 							type: "POST",
-							url:"http://localhost/pws/pws/server/login_gebruiker.php",
+							url:"http://192.168.178.10/pws/pws/server/login_gebruiker.php",
 							data: dataString,
 							dataType: 'text', /////// DIT NOG FIXEN AAAAHHHHH
 							crossDomain: true,
@@ -35,23 +39,24 @@
 							beforeSend: function() { $("#insert").val('Connecting...'); },
 							success: function(data)
 								{
-									if(data=="success")
-									{
-										alert("inserted");
-										$("#insert").val('Success!');
-									}
-									else if(data=="error")
-										alert("error");
+									if (data == "loginsuccess")
+										window.location = "form_notificatie.html";
 									else
-										alert(data);
+										alert("Onjuiste inloggegevens!");
+								},
+							complete: function()
+								{
+									$("#insert").val("Verstuur");
+									document.forms["form1"]["password"].value = "";
 								},
 							error: function(a, b, c)
 								{
-									alert("Er kan geen verbinding met de server worden gelegd.");
+									alert("Error");
 								}
 							});
 					}
 
+					event.preventDefault();
 					//return false;
 				});
 			});

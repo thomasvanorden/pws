@@ -1,13 +1,16 @@
-<?php session_start();?>
 <!DOCTYPE html>
 <html lang="nl">
 	<head>
 		<meta charset="utf-8">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"/>
 		<title>Inloggen client</title>
 		<link rel="stylesheet" type="text/css" href="./css/start.css"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	</head>
 	<body>
+		<header>
+				<a id="backbtn" href="inloggen.html">&lt;</a>
+		</header>
 		<form name="form1" method="post" action ="">
 			<label>Geboortedatum</label>
             <input type = "date" placeholder="Vul hier je geboortedatum in jjjj-mm-dd" name = "geboortedatum" required>
@@ -18,7 +21,7 @@
 		<script type="text/javascript">
 			$(document).ready(function()
 			{
-				$("#insert").click(function()
+				$("#insert").click(function(event)
 				{
 					var geboortedatum = document.forms["form1"]["geboortedatum"].value;
 					var client_code = document.forms["form1"]["client_code"].value;
@@ -27,7 +30,7 @@
 					{
 						$.ajax({
 							type: "POST",
-							url:"http://localhost/pws/pws/server/login_client.php",
+							url:"http://192.168.178.10/pws/pws/server/login_client.php",
 							data: dataString,
 							dataType: 'text', /////// DIT NOG FIXEN AAAAHHHHH
 							crossDomain: true,
@@ -35,23 +38,23 @@
 							beforeSend: function() { $("#insert").val('Connecting...'); },
 							success: function(data)
 								{
-									if(data=="success")
-									{
-										alert("inserted");
-										$("#insert").val('Success!');
-									}
-									else if(data=="error")
-										alert("error");
+									if (data == "loginsuccess")
+										window.location = "home_client.php";
 									else
-										alert(data);
+										alert("Onjuiste inloggegevens!");
+								},
+							complete: function()
+								{
+									$("#insert").val("Verstuur");
+									document.forms["form1"]["geboortedatum"].value = "";
 								},
 							error: function(a, b, c)
 								{
-									alert("Er kan geen verbinding met de server worden gelegd.");
+									alert("Error");
 								}
 							});
 					}
-
+					event.preventDefault();
 					//return false;
 				});
 			});

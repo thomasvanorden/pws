@@ -2,42 +2,82 @@
 <html lang="nl">
 	<head>
 		<meta charset="utf-8"></meta>
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"/>
 		<title>Form_gebruiker</title>
 		<link rel="stylesheet" type="text/css" href="./css/start.css"></link>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	</head>
 	<body>
+		<header>
+				<a id="backbtn" href="start.html">&lt;</a>
+		</header>
 		<form name="form1" method="post" action ="">
-			<label>Gebruikersnaam</label>
+			<label class="required">Gebruikersnaam</label>
 			<input type = "text" placeholder="Vul hier je gebruikersnaam in" name = "gebruikersnaam" required>
-			<label>Wachtwoord</label>
+			<label class="required">Wachtwoord</label>
 			<input type = "password" placeholder="Vul hier je wachtwoord in" name = "wachtwoord" required>
-			<label>Wachtwoord bevestigen</label>
+			<label class="required">Wachtwoord bevestigen</label>
 			<input type = "password" placeholder="Bevestig hier je wachtwoord" name = "bwachtwoord" required>
-			<label>E-mailadres</label>
+			<label class="required">E-mailadres</label>
 			<input type = "email" placeholder="Vul hier je emailadres in" name = "email" required>
-			<label>Voornaam</label>
+			<label class="required">Voornaam</label>
 			<input type = "text" placeholder="Vul hier je voornaam in" name = "voornaam" required>
 			<label>Tussenvoegsel</label>
 			<input type = "text" placeholder="Vul hier je tussenvoegsel in" name = "tussenvoegsel">
-			<label>Achternaam</label>
+			<label class="required">Achternaam</label>
 			<input type = "text" placeholder="Vul hier je achternaam in" name = "achternaam" required>
 			<label>Geboortedatum</label>
 			<input type = "date" placeholder="Vul hier je geboortedatum in" name = "geboortedatum">
-			<label>Clientcode</label>
+			<label class="required">Clientcode</label>
 			<input type = "text" placeholder="Vul hier je client-code in" name = "client_code" required> <!--text/number field-->
-			<label>Ben je een verzorger of een familielid?</label><br/>
-			<label><input type = "radio" placeholder="true" name = "isverzorger" required>Ik ben een verzorger</label><br/>
-			<label><input type = "radio" placeholder="false" name = "isverzorger" required>Ik ben een familielid</label><br/><br/>
+			<label class="required">Ben je een verzorger of een familielid?</label><br/>
+			<label><input type = "radio" value="1" name = "isverzorger" required>Ik ben een verzorger</label><br/>
+			<label><input type = "radio" value="0" name = "isverzorger" required>Ik ben een familielid</label><br/><br/>
 			<label>Profielfoto</label>
 			<input type = "file" placeholder="Selecteer je profielfoto" name = "profielfoto">
-			<input type = "submit" value = "Verstuur" id="insert">
+			<input type="submit" value="Verstuur" id="insert">
 		</form>
 		<script type="text/javascript">
+			function isValidDate(dateString) {
+				var regEx = /^\d{4}-\d{2}-\d{2}$/;
+				return dateString.match(regEx) != null;
+			}
+			function checkFields(username, password, email, fname, mname, lname, birth, client, verzorger, picpath) {
+				var requiredElements = $('input[required]').each(function() {
+					$(this).css('background', '#BBBBBB');
+					if ($(this).val() == "" || $(this).val() == null)
+						$(this).css('background', 'rgb(244, 80, 91)');
+				});
+				if (document.forms["form1"]["wachtwoord"].value != document.forms["form1"]["bwachtwoord"].value)
+				{
+					alert("Wachtwoorden komen niet overeen");
+					return false;
+				}
+				if (!isValidDate(birth))
+				{
+					alert("Datum incorrect formaat (JJJJ-MM-DD)");
+					return false;
+				}
+
+				return true;
+			}
 			$(document).ready(function()
 			{
-				$("#insert").click(function()
+				$("#insert").click(function(event)
 				{
+					if (document.forms["form1"]["gebruikersnaam"].value == "" || document.forms["form1"]["gebruikersnaam"].value == null)
+					{
+						document.forms["form1"]["gebruikersnaam"].value = "TestUser"+Math.floor(Math.random()*(999+1));
+						document.forms["form1"]["wachtwoord"].value = "qwerty123";
+						document.forms["form1"]["bwachtwoord"].value = "qwerty123";
+						document.forms["form1"]["email"].value = "TestUser@example.com";
+						document.forms["form1"]["voornaam"].value = "Test";
+						document.forms["form1"]["achternaam"].value = "User";
+						document.forms["form1"]["geboortedatum"].value = "2000-11-02";
+						document.forms["form1"]["client_code"].value = "1234";
+						document.forms["form1"]["isverzorger"].value = "1";
+					}
+
 					var username = document.forms["form1"]["gebruikersnaam"].value;
 					var password = document.forms["form1"]["wachtwoord"].value;
 					var email = document.forms["form1"]["email"].value;
@@ -48,38 +88,43 @@
 					var client = document.forms["form1"]["client_code"].value;
 					var verzorger = document.forms["form1"]["isverzorger"].value;
 					var picpath = document.forms["form1"]["profielfoto"].value;
-					alert(picpath);
-					var dataString="user="+username+"&pass="+password+"&email="+email+"&fname="+fname+"&mname="+mname+"&lname="+lname+"&birth="+birth+"&client="+client+"&verzorger="+verzorger+"&picpath=./res/img/test.png";//+"\""+picpath"\"";
-	//					if($.trim(titel).length>0 & $.trim(inhoud).length>0)
-					{
-						$.ajax({
-							type: "POST",
-							url:"http://localhost/pws/pws/server/insert_gebruiker.php",
-							data: dataString,
-							dataType: 'text', /////// DIT NOG FIXEN AAAAHHHHH
-							crossDomain: true,
-							cache: false,
-							beforeSend: function() { $("#insert").val('Connecting...'); },
-							success: function(data)
-								{
-									if(data=="success")
-									{
-										alert("inserted");
-										$("#insert").val('Success!');
-									}
-									else if(data=="error")
-										alert("error");
-									else
-										alert(data);
-								},
-							error: function(a, b, c)
-								{
-									alert("Er kan geen verbinding met de server worden gelegd.");
-								}
-							});
-					}
 
-					//return false;
+					if (checkFields(username, password, email, fname, mname, lname, birth, client, verzorger, picpath))
+					{
+						var dataString="user="+username+"&pass="+password+"&email="+email+"&fname="+fname+"&mname="+mname+"&lname="+lname+"&birth="+birth+"&client="+client+"&verzorger="+verzorger;//+"&picpath="+picpath;
+					//	alert(dataString);
+		//					if($.trim(titel).length>0 & $.trim(inhoud).length>0)
+						{
+							$.ajax({
+								type: "POST",
+								url:"http://192.168.178.10/pws/pws/server/insert_gebruiker.php",
+								data: dataString,
+								dataType: 'text',
+								crossDomain: true,
+								cache: false,
+								beforeSend: function() { $("#insert").val('Connecting...'); },
+								success: function(data)
+									{
+										console.log(data);
+										//window.location = "form_notificatie.html";
+									},
+								complete: function()
+									{
+										$("#insert").val('Je bent geregistreerd!');
+										window.location = "form_notificatie.html";
+									},
+								error: function(a, b, c)
+									{
+										alert("Helaas kan er geen verbinding met de server tot stand gebracht worden.");
+										alert(a.responseText);
+										alert(b);
+										alert(c);
+									}
+								});
+						}
+						//return false;
+					}
+					event.preventDefault();
 				});
 			});
 		</script>

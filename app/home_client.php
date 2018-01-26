@@ -19,10 +19,6 @@
 			<p></p>
 		</div>
 		<script src="./js/time.js"></script>
-		<form name="form1" method="post" action ="">
-			<p><input type = "text" placeholder="vul hier ff een message nummertje in" name="klm"></p>
-			<p><input type = "submit" value = "Verstuur"></p>
-		</form>
 		<script>
 			function playAudio(notifnode) {
 		        var audio = notifnode.getElementsByTagName('audio')[0];
@@ -79,8 +75,10 @@
 				</div>";
 			}
 		?>
+
 		<?php
-			$query2 = "SELECT * FROM pws_client WHERE client_code='$s_client_code'";
+			$client_code = $_SESSION["client_code"];
+			$query2 = "SELECT * FROM pws_client WHERE client_code='$client_code'";
 			$resultaat2 = mysqli_query($verbinding, $query2);
 			while ($row2= mysqli_fetch_array($resultaat2))
 			{
@@ -95,7 +93,7 @@
 				createNotification($row['titel'], $row['inhoud'], $row['pictogram'], $row['tijd']);
 			}
 			echo "</div>"
-		?>-->
+		?> -->
 
 		<script>
 			function showSlides()

@@ -1,4 +1,5 @@
 <?php
+session_start();
 header("Access-Control-Allow-Origin: *");
 $verbinding = mysqli_connect("localhost","root","140Thomas_Timo851","pws");
 /*
@@ -9,9 +10,9 @@ $verbinding = mysqli_connect("localhost","root","140Thomas_Timo851","pws");
 */
   if (!EMPTY($_POST))
   {
-    $my_file = 'file.txt';
+    $my_file = 'notificatie.txt';
     $handle = fopen($my_file, 'w') or die('Cannot open file:  '.$my_file);
-    file_put_contents("file.txt",print_r($_POST, true));
+    file_put_contents("notificatie.txt",print_r($_POST, true));
     fclose($handle);
     $ftp_server = "localhost";
     $ftp_user_name = "daemon";
@@ -19,7 +20,7 @@ $verbinding = mysqli_connect("localhost","root","140Thomas_Timo851","pws");
     $destination_file = "file2.txt";
     $source_file = realpath($_POST['pictogram']);
     $file_name=$_POST['pictogram'];
-
+    echo $_SESSION["user"];
     $conn_id = ftp_connect($ftp_server);
     $login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass);
     if ((!$conn_id) && (!$login_result)) {

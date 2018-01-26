@@ -1,7 +1,16 @@
 <?php
+  session_start();
     if (!EMPTY($_POST)) {
         $gebruikersnaam=$_POST['user'];
-        $wachtwoord=password_hash($_POST['pass'], PASSWORD_DEFAULT);
+      if (!file_exists('img/'.$gebruikersnaam)) {
+        mkdir('img/'.$gebruikersnaam, 0777, true);
+      }
+
+      $my_file = 'gebruiker.txt';
+      $handle = fopen($my_file, 'w') or die('Cannot open file:  '.$my_file);
+      file_put_contents("gebruiker.txt",print_r($_POST, true));
+      fclose($handle);
+        $wachtwoord=md5($_POST['pass']);
         $email=$_POST['email'];
         $voornaam=$_POST['fname'];
         $tussenvoegsel=$_POST['mname'];
@@ -9,7 +18,9 @@
         $geboortedatum=$_POST['birth'];
         $client_code=$_POST['client'];
         $isverzorger=$_POST['verzorger'];
-        $profielfoto=$_POST['picpath'];/*
+        //$profielfoto=$_POST['picpath'];
+        $profielfoto="hoi.png";
+        /*
         if (!strcmp($_FILES['profielfoto']['name'], "")) {
             $destination_file .= "test.png";
             $source_file = "./res/img/test.png";
@@ -23,6 +34,7 @@
         VALUES('$gebruikersnaam','$wachtwoord','$email','$voornaam','$tussenvoegsel','$achternaam','$geboortedatum','$client_code','$isverzorger','$profielfoto')";
         $resultaat = mysqli_query($verbinding, $query);
         echo "Je gegevens zijn verstuurd";
+        echo "'$gebruikersnaam','$wachtwoord','$email','$voornaam','$tussenvoegsel','$achternaam',DATE($geboortedatum),'$client_code','$isverzorger','$profielfoto')";
         $close = mysqli_close($verbinding);
 
 //        session_start();
