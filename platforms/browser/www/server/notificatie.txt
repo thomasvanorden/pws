@@ -1,0 +1,6 @@
+Array
+(
+    [titel] => HET WERTK
+    [inhoud] => GEWELDIG
+    [pictogram] => IMG_0535_tijmo.jpg
+)

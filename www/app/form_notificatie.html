@@ -44,7 +44,7 @@
 //						alert("titel of inhoud zijn leeg");
 						$.ajax({
 							type: "POST",
-							url:"http://192.168.178.10/pws/pws/server/insert_notificatie.php",
+							url:"http://192.168.0.100/pws/insert_notificatie.php",
 							data: dataString,
 							dataType: 'text',
 							crossDomain: true,
@@ -52,19 +52,11 @@
 							beforeSend: function() { $("#insert").val('Connecting...'); },
 							success: function(data)
 								{
-									if(data=="success")
-									{
-										alert("inserted");
-										$("#insert").val('SVerstuurd!');
-									}
-									else if(data=="error")
-										alert("error");
-									else
-										alert(data);
+									alert(data);
 								},
 							complete: function()
 								{
-								//	$("#insert").val('Je notificatie is verstuurd!');
+									$("#insert").val('Je notificatie is misschien verstuurd!');
 								},
 							error: function(a, b, c)
 								{

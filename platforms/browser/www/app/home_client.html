@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"/>
+		<link rel="stylesheet" type="text/css" href="./css/style.css"/>
+		<script src="js/jquery.min.js"></script>
+		<title>Home</title>
+	</head>
+	<body>
+		<div id="timedate">
+			<h1></h1>
+			<p></p>
+		</div>
+		<script src="./js/time.js"></script>
+		<script>
+			function playAudio(notifnode) {
+		        var audio = notifnode.getElementsByTagName('audio')[0];
+				audio.src = 'https://translate.google.com/translate_tts?ie=UTF-8&q='
+						  + notifnode.getElementsByTagName('h1')[1].innerHTML + "..."
+						  + notifnode.getElementsByTagName('p')[1].innerHTML + '&tl=nl&client=tw-ob';
+		        audio.play();
+			}
+		</script>
+		<div id="notifications">
+		</div>
+	   <script>
+		   var displayNotifs = new Map();
+		   var notifIter = displayNotifs.values();
+		   var display2 = new Array();
+		   var arrayIndex = 0;
+		   function showSlides()
+		   {
+//			   if (slideIndex > displayNotifs.size + 11) { slideIndex = 10; }
+
+			   displayNotifs.forEach(function(value) {
+				   value.style.display = "none";
+			   });
+
+   				if (notifIter.next().done)
+   					notifIter = displayNotifs[Symbol.iterator]();
+
+				display2 = new Array();
+				for (let elem of notifIter) {
+				  	display2.push(elem[0]);
+				}
+
+				if (arrayIndex >= display2.length) { arrayIndex = 0; }
+				var selectElem = displayNotifs.get(display2[arrayIndex++]);
+				if (selectElem != undefined)
+					selectElem.style.display = "block";
+
+			setTimeout(showSlides, 1000);
+		   }
+	   </script>
+		 <script type="text/javascript">
+		 	function createNotification(titel, inhoud)
+			{
+				var notif = document.createElement('div');
+				notif.className = "notification";
+				notif.onclick = function() { playAudio(notif); }
+
+				var naudio = document.createElement('audio');
+				naudio.source = "./res/audio/4ef781b1cb5e5d83fec0ebb0dd3c5761.mp3"
+
+				var nheader = document.createElement('div');
+				nheader.className = "notifheader";
+				var nhimg = document.createElement('img');
+				nhimg.src = "./res/img/test.png";
+				var nhh = document.createElement('h1');
+				nhh.innerHTML = "Deze dementie app is cool";
+				var nhp = document.createElement('p');
+				nhp.innerHTML = "12:34";
+
+				var nimg = document.createElement('img');
+				nimg.src = "./res/img/test.png";
+				var nh = document.createElement('h1');
+				nh.innerHTML = titel;
+				var np = document.createElement('p');
+				np.innerHTML = inhoud;
+
+				nheader.appendChild(nhimg);
+				nheader.appendChild(nhh);
+				nheader.appendChild(nhp);
+				notif.appendChild(nheader);
+				notif.appendChild(nimg);
+				notif.appendChild(nh);
+				notif.appendChild(np);
+				document.getElementById('notifications').appendChild(notif);
+				return notif;
+			}
+
+			function retrieveNotifications()
+			{
+ 		   		var lnotifIter = displayNotifs.values();
+				var dataString="client=555";
+ 				$.ajax({
+ 					type: "POST",
+ 					url:"http://192.168.0.100/pws/get_notificaties.php",
+ 					data: dataString,
+ 					dataType: 'json',
+ 					crossDomain: true,
+ 					cache: false, // FF KIJKEN
+ 					beforeSend: function() { $("#insert").val('Connecting...'); },
+ 					success: function(data)
+ 						{
+							for (i = 0; i < Object.keys(data).length; i++)
+							{
+								if (displayNotifs.get(data[i].notif_id) == undefined)
+									displayNotifs.set(data[i].notif_id, createNotification(data[i].titel, data[i].inhoud));
+							}
+ 						},
+ 					error: function(a, b, c)
+ 						{
+ 							alert("Er kan geen verbinding met de server worden gelegd.");
+							alert(a);
+							alert(b);
+							alert(c);
+ 						}
+ 				});
+
+				setTimeout(retrieveNotifications, 1000); // 1min timer om te refreshen
+			}
+
+		 	$(document).ready(function() {
+				startTime();
+				retrieveNotifications();
+				showSlides();
+			});
+		 </script>
+		<div id="widgets">
+			<div class="widget" id="widget_holiday">
+				<img src="./res/img/test.png"/>
+				<h1 class="text">$title</h1>
+				<p class="text">$content</p>
+			</div>
+			<div class="widget" id="widget_weather">
+				<img src="./res/img/test.png"/>
+				<h1 class="text">$title</h1>
+				<p class="text">$content</p>
+			</div>
+		</div>
+		<script src="./js/widgets.js"></script>
+
+		<script type="text/javascript">updateWidgets();</script>
+
+	</body>
+</html>

@@ -79,10 +79,11 @@
 						console.log(dataString);
 						$.ajax({
 							type: "POST",
-							url:"http://192.168.178.10/pws/pws/server/insert_gebruiker.php",
+							url:"http://192.168.0.100/pws/insert_gebruiker.php",
 							data: dataString,
 							dataType: 'text',
 							crossDomain: true,
+							withCredentials: true,
 							cache: false,
 							beforeSend: function() { $("#insert").val('Connecting...'); },
 							success: function(data)

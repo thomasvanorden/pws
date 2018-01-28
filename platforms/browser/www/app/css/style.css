@@ -28,7 +28,6 @@ html {
     width: 100%;
     padding: 10px 0;
     font-size: 30pt;
-
 }
 
 #timedate h1 {
@@ -48,11 +47,11 @@ html {
     line-height: 40.5px;
 }
 
-#notifications{
+#notifications {
 	height: 75%;
 }
 
-.notification{
+.notification {
     display: block;
     position: relative;
     border-radius: 4px;
@@ -61,39 +60,43 @@ html {
     width: 92%;
     min-height: 50%;
     text-align: left;
-    margin: 0px 4%;
+    margin: 16px 4% 100px 4%;
+    min-height: 480px;
+    font-size: 12px;
 }
 
-.notification > img{
+.notification > img {
 	display: block;
-	height: 368px;
+	width: 28%;
 	position: relative;
 	float: left;
 	margin: 16px;
 }
 
-.notification > h1{
-  font-size: 96px;
-  margin: 4px 0px 2px 400px;
+.notification > h1 {
+  font-size: 5em;
+  margin: 4px 0px 2px 28%;
+  padding-left: 16px;
   color: #000000;
   letter-spacing: -0.53px;
 }
 
-.notification > p{
-  font-size: 64px;
-  margin: 4px 0px 0px 400px;
+.notification > p {
+  font-size: 4em;
+  margin: 4px 0px 0px 28%;
+  padding-left: 16px;
   text-align: left;
   color: #000000;
   letter-spacing: -0.24px;
 }
 
-.notifheader{
+.notifheader {
     border-radius: 4px 4px 0px 0px;
     height: 80px;
     letter-spacing: -0.08px;
 }
 
-.notifheader > img{
+.notifheader > img {
     height: 64px;
     width: 64px;
     display: relative;
@@ -101,8 +104,8 @@ html {
     margin: 8px;
 }
 
-.notifheader > h1{
-    font-size: 48px;
+.notifheader > h1 {
+    font-size: 3em;
     display: inline-block;
     margin: 0px 8px;
     line-height: 80px;
@@ -110,14 +113,18 @@ html {
     letter-spacing: -0.08px;
 }
 
-.notifheader > p{
+.notifheader > p {
     font-size: 24px;
     line-height: 80px;
     float: right;
     margin-right: 28px;
 }
 
-.widget{
+#widgets {
+
+}
+
+.widget {
     float: left;
     display: inline-block;
     position: relative;
@@ -130,7 +137,7 @@ html {
     margin: 50px 4%;
 }
 
-.widget > img{
+.widget > img {
 	display: block;
 	height: 250px;
     width: 250px;
@@ -139,14 +146,14 @@ html {
 	margin: 16px;
 }
 
-.widget > h1{
+.widget > h1 {
   font-size: 64px;
   margin: 4px 0px 2px 84px;
   color: #000000;
   letter-spacing: -0.53px;
 }
 
-.widget > p{
+.widget > p {
   font-size: 48px;
   margin: 4px 0px 0px 84px;
   text-align: left;

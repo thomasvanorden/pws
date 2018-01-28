@@ -1,12 +1,13 @@
 Array
 (
-    [user] => Thomas
-    [pass] => th
-    [email] => thomasvanorden@live.nl
-    [fname] => Thomas
+    [user] => TestUser524
+    [pass] => qwerty123
+    [email] => TestUser@example.com
+    [fname] => Test
     [mname] => 
-    [lname] => Orden
-    [birth] => 2018-01-26
-    [client] => 69
+    [lname] => User
+    [birth] => 2000-11-02
+    [client] => 1234
     [verzorger] => 1
+    [picpath] => 
 )

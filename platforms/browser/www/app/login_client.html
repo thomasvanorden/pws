@@ -31,7 +31,7 @@
 					{
 						$.ajax({
 							type: "POST",
-							url:"http://192.168.178.10/pws/pws/server/login_client.php",
+							url:"http://192.168.0.100/pws/login_client.php",
 							data: dataString,
 							dataType: 'text', /////// DIT NOG FIXEN AAAAHHHHH
 							crossDomain: true,
@@ -40,7 +40,7 @@
 							success: function(data)
 								{
 									if (data == "loginsuccess")
-										window.location = "home_client.php";
+										window.location = "home_client.html";
 									else
 										alert("Onjuiste inloggegevens!");
 								},
