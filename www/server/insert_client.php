@@ -1,7 +1,6 @@
 <?php
     include('common.php');
     header("Access-Control-Allow-Origin: *");
-    session_start();
   if (!EMPTY($_POST)) {
       $voornaam=$_POST['voornaam'];
       $tussenvoegsel=$_POST['tussenvoegsel'];
@@ -14,8 +13,7 @@
       "INSERT INTO pws_client(voornaam,tussenvoegsel,achternaam,geboortedatum,client_code)
       VALUES('$voornaam','$tussenvoegsel','$achternaam','$geboortedatum','$client_code')";
       $resultaat = mysqli_query($verbinding, $query);
-      echo "Je gegevens zijn verstuurd";
-      $_SESSION["client_code"] = $client_code;
+      echo json_encode(array("insertstatus" => "OK", "client_code" => "$client_code"));
 
       $close = mysqli_close($verbinding);
   }

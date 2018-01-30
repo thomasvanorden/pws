@@ -7,6 +7,6 @@
     <author email="timo.sluis@live.nl" href="http://phonegap.com">
         Timo en Thomas
     </author>
-    <content src="app/start.html"/>
-    <access origin="*"/>
+    <content src="app/start.html" />
+    <access origin="192.168.178.10" />
 </widget>

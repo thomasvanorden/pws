@@ -18,4 +18,4 @@ function checkInternet()
     }
 }
 
-checkInternet();
+var _hostname = "192.168.178.10";

@@ -1,13 +1,13 @@
 Array
 (
-    [user] => TestUser524
-    [pass] => qwerty123
-    [email] => TestUser@example.com
-    [fname] => Test
-    [mname] => 
-    [lname] => User
-    [birth] => 2000-11-02
-    [client] => 1234
-    [verzorger] => 1
-    [picpath] => 
+    [gebruikersnaam] => a
+    [wachtwoord] => a
+    [bwachtwoord] => a
+    [email] => a@live.nl
+    [voornaam] => a
+    [tussenvoegsel] => 
+    [achternaam] => a
+    [geboortedatum] => 
+    [client_code] => 242
+    [isverzorger] => 0
 )

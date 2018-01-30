@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "Dementie",
+  "short_name": "Dementie",
+  "version": "com.phonegap.helloworld",
+  "description": "DEMENTIE IS NIET OK!",
+  "author": "Timo en Thomas",
+  "icons": [],
+  "start_url": "app/start.html"
+}

@@ -14,7 +14,7 @@
       "INSERT INTO pws_client(voornaam,tussenvoegsel,achternaam,geboortedatum,client_code)
       VALUES('$voornaam','$tussenvoegsel','$achternaam','$geboortedatum','$client_code')";
       $resultaat = mysqli_query($verbinding, $query);
-      echo "Je gegevens zijn verstuurd";
+      echo json_encode(array("insertstatus" => "OK"));
       $_SESSION["client_code"] = $client_code;
 
       $close = mysqli_close($verbinding);

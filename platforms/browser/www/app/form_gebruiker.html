@@ -14,10 +14,10 @@
 				<a href="start.html">&lt;</a>
 				<h1>Gebruiker registreren</h1>
 		</header>
-		<form name="form1" method="post" action ="">
+		<form name="form1" method="post" action ="" enctype="multipart/form-data">
 			<div id="selectimg">
 				<img src="http://placehold.it/128?text=Profielfoto" alt="your image"/>
-				<input type="file" value="pictogram" name="profielfoto" accept="image/*" onchange="readURL(this);">
+				<input type="file" name="afile" id="afile" accept="image/*" onchange="readURL(this)"/>
 			</div>
 			<label class="required">Gebruikersnaam</label>
 			<input type = "text" placeholder="Vul hier je gebruikersnaam in" name = "gebruikersnaam" required>
@@ -39,7 +39,7 @@
 			<input type = "number" placeholder="Vul hier je client-code in" name = "client_code" required> <!--text/number field-->
 			<label class="required">Ben je een verzorger of een familielid?</label><br/>
 			<label><input type = "radio" value="1" name = "isverzorger" required>Ik ben een verzorger</label><br/>
-			<label><input type = "radio" value="0" name = "isverzorger" required>Ik ben een familielid</label><br/><br/>
+			<label><input type = "radio" value="0" name = "isverzorger" required checked="checked">Ik ben een familielid</label><br/><br/>
 			<input type="submit" value="Verstuur" id="insert">
 		</form>
 		<script type="text/javascript">
@@ -47,6 +47,7 @@
 			{
 				$("#insert").click(function(event)
 				{
+					event.preventDefault(); // een van de twee moet ff weg (zie onderaan)
 					if (document.forms["form1"]["gebruikersnaam"].value == "" || document.forms["form1"]["gebruikersnaam"].value == null)
 					{
 						document.forms["form1"]["gebruikersnaam"].value = "TestUser"+Math.floor(Math.random()*(999+1));
@@ -60,51 +61,50 @@
 						document.forms["form1"]["isverzorger"].value = "1";
 					}
 
-					var username = document.forms["form1"]["gebruikersnaam"].value;
-					var password = document.forms["form1"]["wachtwoord"].value;
-					var bpassword = document.forms["form1"]["bwachtwoord"].value;
-					var email = document.forms["form1"]["email"].value;
-					var fname = document.forms["form1"]["voornaam"].value;
-					var mname = document.forms["form1"]["tussenvoegsel"].value;
-					var lname = document.forms["form1"]["achternaam"].value;
-					var birth = document.forms["form1"]["geboortedatum"].value;
-					var client = document.forms["form1"]["client_code"].value;
-					var verzorger = document.forms["form1"]["isverzorger"].value;
-					var picpath = document.forms["form1"]["profielfoto"].value.replace(/\\/g,"/");
+					var username = document.forms["form1"]["gebruikersnaam"];
+					var password = document.forms["form1"]["wachtwoord"];
+					var bpassword = document.forms["form1"]["bwachtwoord"];
+					var email = document.forms["form1"]["email"];
+					var fname = document.forms["form1"]["voornaam"];
+					var mname = document.forms["form1"]["tussenvoegsel"];
+					var lname = document.forms["form1"]["achternaam"];
+					var birth = document.forms["form1"]["geboortedatum"];
+					var client = document.forms["form1"]["client_code"];
+					var verzorger = document.forms["form1"]["isverzorger"];
+					var picpath = document.forms["form1"]["afile"].value.replace(/\\/g,"/");
 					picpath = picpath.substring(picpath.lastIndexOf('/')+1);
 
-					if (checkFields(username, password, bpassword, email, fname, mname, lname, birth, client, verzorger, picpath))
+					var validData = true;
+					if (isEmpty(username)) validData = false;
+					if (!checkPassword(password, bpassword)) validData = false;
+					if (!checkEmail(email)) validData = false;
+					if (isEmpty(fname)) validData = false;
+					if (isEmpty(lname)) validData = false;
+					if (isEmpty(client)) validData = false;
+
+					if (validData)
 					{
-						var dataString="user="+username+"&pass="+password+"&email="+email+"&fname="+fname+"&mname="+mname+"&lname="+lname+"&birth="+birth+"&client="+client+"&verzorger="+verzorger+"&picpath="+picpath;
-						console.log(dataString);
-						$.ajax({
-							type: "POST",
-							url:"http://192.168.0.100/pws/insert_gebruiker.php",
-							data: dataString,
-							dataType: 'text',
-							crossDomain: true,
-							withCredentials: true,
-							cache: false,
-							beforeSend: function() { $("#insert").val('Connecting...'); },
-							success: function(data)
-								{
-									console.log(data);
-									$("#insert").val('Je bent geregistreerd!');
-									window.location = "form_notificatie.html";
-								},
-							complete: function() { console.log("AJAX complete"); },
-							error: function(a, b, c)
-								{
-									alert("Helaas kan er geen verbinding met de server tot stand gebracht worden.");
-									console.log("Helaas kan er geen verbinding met de server tot stand gebracht worden.");
-									console.log(a.responseText);
-									console.log(b);
-									console.log(c);
-								}
-							});
+						var fd = new FormData(document.forms["form1"]);
+						var xhr = new XMLHttpRequest();
+						xhr.open('POST', 'http://192.168.178.10/pws/pws/www/server/insert_gebruiker.php');
+						xhr.send(fd);
+
+						xhr.onreadystatechange = function() {
+						  if (xhr.readyState === 4) {
+							  alert(xhr.responseText);
+							    var response = JSON.parse(xhr.responseText);
+							      if (xhr.status === 200 && response.loginstatus === 'OK') {
+									  $("#insert").val('Je bent geregistreerd!');
+									  window.location = "form_notificatie.html";
+							      } else {
+	  								  alert("Helaas kan er geen verbinding met de server tot stand gebracht worden.");
+	  								  console.log("Helaas kan er geen verbinding met de server tot stand gebracht worden.");
+							      }
+							}
+						}
 					}
 
-					event.preventDefault();
+					event.preventDefault(); // een van de twee moet ff weg (zie bovenaan)
 				});
 			});
 		</script>

@@ -6,58 +6,62 @@
 		<title>Form_client</title>
 		<link rel="stylesheet" type="text/css" href="./css/start.css"/>
 		<script src="js/jquery.min.js"></script>
+		<script src="js/forminput.js"></script>
+		<script src="./js/common.js"></script>
 	</head>
 	<body>
 		<header>
-				<a href="start.html">&lt;</a>
-				<h1>Client registreren</h1>
+			<a href="start.html">&lt;</a>
+			<h1>Client registreren</h1>
 		</header>
 		<form name="form1" method="post" action ="">
 			<label class="required">Voornaam</label>
-			<input type = "text" placeholder="Vul hier je voornaam in" name = "voornaam" required>
+			<input type = "text" placeholder="Vul hier je voornaam in" name = "voornaam">
 			<label>Tussenvoegsel</label>
 			<input type = "text" placeholder="Vul hier je tussenvoegsel in" name = "tussenvoegsel">
 			<label class="required">Achternaam</label>
-			<input type = "text" placeholder="Vul hier je achternaam in" name = "achternaam" required>
+			<input type = "text" placeholder="Vul hier je achternaam in" name = "achternaam">
 			<label class="required">Geboortedatum</label>
-			<input type = "date" placeholder="Vul hier je geboortedatum in" name = "geboortedatum" required>
-			<input id="insert" type="submit" value="Verstuur">
+			<input type = "date" placeholder="Vul hier je geboortedatum in" name = "geboortedatum">
+			<input id="sendbutton" type="submit" value="Verstuur">
 		</form>
 		<script type="text/javascript">
 			$(document).ready(function()
 			{
-				$("#insert").click(function(event)
+				$("#sendbutton").click(function(event)
 				{
-					var voornaam = document.forms["form1"]["voornaam"].value;
-					var tussenvoegsel = document.forms["form1"]["tussenvoegsel"].value;
-					var achternaam = document.forms["form1"]["achternaam"].value;
-					var geboortedatum = document.forms["form1"]["geboortedatum"].value;
-					var dataString="voornaam="+voornaam+"&tussenvoegsel="+tussenvoegsel+"&achternaam="+achternaam+"&geboortedatum="+geboortedatum;
-	//					if($.trim(titel).length>0 & $.trim(inhoud).length>0)
-					{
-						$.ajax({
-							type: "POST",
-							url:"http://192.168.0.100/pws/insert_client.html",
-							data: dataString,
-							dataType: 'text', /////// DIT NOG FIXEN AAAAHHHHH
-							crossDomain: true,
-							cache: false,
-							beforeSend: function() { $("#insert").val('Connecting...'); },
-							success: function(data)
-								{
-										alert(data);
-
-									window.location = "home_client.php";
-								},
-							error: function(a, b, c)
-								{
-									alert("Er kan geen verbinding met de server worden gelegd.");
-								}
-							});
-					}
 					event.preventDefault();
 
-					//return false;
+					var voornaam = document.forms["form1"]["voornaam"];
+					var tussenvoegsel = document.forms["form1"]["tussenvoegsel"];
+					var achternaam = document.forms["form1"]["achternaam"];
+					var geboortedatum = document.forms["form1"]["geboortedatum"];
+
+					var validData = true;
+					if (isEmpty(voornaam)) validData = false;
+					if (isEmpty(achternaam)) validData = false;
+					if (!checkDate(geboortedatum)) validData = false;
+
+					if (validData)
+					{
+						var fd = new FormData(document.forms["form1"]);
+						var xhr = new XMLHttpRequest();
+						xhr.open('POST', window.sessionStorage._hostname + 'insert_client.php');
+						xhr.send(fd);
+
+						xhr.onreadystatechange = function() {
+						  if (xhr.readyState === 4) {
+							    var response = JSON.parse(xhr.responseText);
+							      if (xhr.status === 200) {
+									  $("#sendbutton").val('Je bent geregistreerd!');
+									  alert("Je client-code is \'" + response.client_code + "\'!\nBewaar deze goed!");
+									  window.location = "home_client.html";
+							      } else {
+	  								  alert("Helaas kan er geen verbinding met de server tot stand gebracht worden.");
+							      }
+							}
+						}
+					}
 				});
 			});
 		</script>

@@ -12,7 +12,7 @@
 				<a href="inloggen.html">&lt;</a>
 				<h1>Inloggen</h1>
 		</header>
-		<form name="form1" method="post" action ="">
+		<form name="form1" method="post" action ="" enctype="multipart/form-data">
 			<label>Geboortedatum</label>
             <input type = "date" placeholder="Vul hier je geboortedatum in jjjj-mm-dd" name = "geboortedatum" required>
 			<label>Clientcode</label>
@@ -26,34 +26,25 @@
 				{
 					var geboortedatum = document.forms["form1"]["geboortedatum"].value;
 					var client_code = document.forms["form1"]["client_code"].value;
-					var dataString="geboortedatum="+geboortedatum+"&client_code="+client_code;
-	//					if($.trim(titel).length>0 & $.trim(inhoud).length>0)
+					// if()
 					{
-						$.ajax({
-							type: "POST",
-							url:"http://192.168.0.100/pws/login_client.php",
-							data: dataString,
-							dataType: 'text', /////// DIT NOG FIXEN AAAAHHHHH
-							crossDomain: true,
-							cache: false,
-							beforeSend: function() { $("#insert").val('Connecting...'); },
-							success: function(data)
-								{
-									if (data == "loginsuccess")
+						var fd = new FormData(document.forms["form1"]);
+						var xhr = new XMLHttpRequest();
+						xhr.open('POST', window.sessionStorage._hostname + 'login_client.php');
+						xhr.send(fd);
+
+						xhr.onreadystatechange = function() {
+							if (xhr.readyState === 4) {
+									var response = JSON.parse(xhr.responseText);
+										if (xhr.status === 200 && response.loginstatus === 'OK') {
+										$("#insert").val('Je bent geregistreerd!');
+										window.sessionStorage.client_code = response.client_code;
 										window.location = "home_client.html";
-									else
-										alert("Onjuiste inloggegevens!");
-								},
-							complete: function()
-								{
-									$("#insert").val("Verstuur");
-									document.forms["form1"]["geboortedatum"].value = "";
-								},
-							error: function(a, b, c)
-								{
-									alert("Error");
-								}
-							});
+										} else {
+											alert("Onjuiste inloggegevens");
+										}
+							}
+						}
 					}
 					event.preventDefault();
 					//return false;
