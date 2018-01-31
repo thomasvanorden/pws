@@ -17,7 +17,9 @@
     $jsonNotifs = array();
 		while ($row= mysqli_fetch_array($resultaat))
 		{
-            array_push($jsonNotifs, array('titel' => $row['titel'], 'inhoud' => $row['inhoud'], 'notif_id' => $row['id'], 'sender' => $row['afzender_gebruikersnaam'], 'picname' => $row['pictogram']));
+            array_push($jsonNotifs, array('titel' => $row['titel'], 'inhoud' => $row['inhoud'], 'notif_id' => $row['id'],
+            'sender' => $row['afzender_gebruikersnaam'], 'picname' => $row['pictogram'], 'sender_name' => ($row['voornaam'] . " " .$row['tussenvoegsel'] . " " .$row['achternaam']),
+            'profielfoto' => $));
 		}
         echo json_encode($jsonNotifs);
         $my_file = 'notificaties.txt';
