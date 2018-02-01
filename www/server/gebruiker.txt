@@ -1,13 +1,13 @@
 Array
 (
-    [gebruikersnaam] => a
+    [gebruikersnaam] => lkmlk
     [wachtwoord] => a
     [bwachtwoord] => a
     [email] => a@live.nl
-    [voornaam] => a
+    [voornaam] => sflkm
     [tussenvoegsel] => 
-    [achternaam] => a
+    [achternaam] => kml
     [geboortedatum] => 
-    [client_code] => 242
+    [client_code] => 15278124
     [isverzorger] => 0
 )

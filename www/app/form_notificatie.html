@@ -20,9 +20,9 @@
 				<input type="file" value="pictogram" name="pictogram" accept="image/*" onchange="readURL(this);">
 			</div>
 			<label>Titel</label>
-			<input type="text" placeholder="Vul hier de titel in" name = "titel">
+			<input type="text" placeholder="Vul hier de titel in" name = "titel" maxlength="24">
 			<label>Inhoud</label>
-			<input type="text" placeholder="Vul hier de inhoud in" name = "inhoud">
+			<input type="text" placeholder="Vul hier de inhoud in" name = "inhoud" maxlength="150">
 			<input type="submit" value="Verstuur" id="insert">
 		</form>
 		<script type="text/javascript">
@@ -33,7 +33,12 @@
 					var titel = document.forms["form1"]["titel"].value;
 					var inhoud = document.forms["form1"]["inhoud"].value;
 					var picpath = document.forms["form1"]["pictogram"].value.replace(/\\/g,"/");
-					picpath = picpath.substring(picpath.lastIndexOf('/')+1);
+					if (picpath == "" || picpath == null) {
+						picpath = "user.png";
+					}
+					else {
+						picpath = picpath.substring(picpath.lastIndexOf('/')+1);
+					}
 			//		if (checkFields(username, password, bpassword, email, fname, mname, lname, birth, client, verzorger, picpath))
 					{
 						var fd = new FormData(document.forms["form1"]);

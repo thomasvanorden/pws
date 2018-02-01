@@ -4,22 +4,22 @@
     if(!EMPTY($_POST))
     {
 		$client_code = $_POST["client_code"];
-		$query2 = "SELECT * FROM pws_client WHERE client_code='$client_code'";
-		$resultaat2 = mysqli_query($verbinding, $query2);
-		while ($row2= mysqli_fetch_array($resultaat2))
-		{
-		//	echo "Goeiemorgen, " . $row2['voornaam'];
-		}
 
 		$query = "SELECT * FROM pws_notificaties WHERE client_code = '$client_code'";
 		$resultaat = mysqli_query($verbinding, $query);
 
-    $jsonNotifs = array();
-		while ($row= mysqli_fetch_array($resultaat))
+        $jsonNotifs = array();
+        while ($row= mysqli_fetch_array($resultaat))
 		{
-            array_push($jsonNotifs, array('titel' => $row['titel'], 'inhoud' => $row['inhoud'], 'notif_id' => $row['id'],
-            'sender' => $row['afzender_gebruikersnaam'], 'picname' => $row['pictogram'], 'sender_name' => ($row['voornaam'] . " " .$row['tussenvoegsel'] . " " .$row['achternaam']),
-            'profielfoto' => $));
+            $afzendergebruikersnaam = $row['afzender_gebruikersnaam'];
+    		$query2 = "SELECT * FROM pws_gebruiker WHERE gebruikersnaam='$afzendergebruikersnaam'";
+    		$resultaat2 = mysqli_query($verbinding, $query2);
+    		while ($row2= mysqli_fetch_array($resultaat2))
+    		{
+                array_push($jsonNotifs, array('titel' => $row['titel'], 'inhoud' => $row['inhoud'], 'notif_id' => $row['id'],
+                'sender' => $row['afzender_gebruikersnaam'], 'picname' => $row['pictogram'], 'sender_name' => ($row2['voornaam'] . " " . $row2['tussenvoegsel'] . " " . $row2['achternaam']),
+                'profielfoto' => $row2['profielfoto']));
+    		}
 		}
         echo json_encode($jsonNotifs);
         $my_file = 'notificaties.txt';
