@@ -85,6 +85,9 @@
 											window.sessionStorage.username = username.value;
 									  	alert('U bent geregistreerd!');
 									  	window.location = "form_notificatie.html";
+								  } else if (response.loginstatus == 'ERROR') {
+									  if (response.error == 'userexists')
+									  	alert("Gebruikersnaam bestaat al!");
 							      } else {
 	  								  alert("Helaas kan er geen verbinding met de server tot stand gebracht worden.");
 							      }

@@ -4,10 +4,17 @@
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Credentials: true");
     header("Access-Control-Allow-Methods: *");
-    session_start();
     if (!EMPTY($_POST)) {
         $gebruikersnaam=$_POST['gebruikersnaam'];
-        $_SESSION['user'] = $gebruikersnaam;
+
+        $query_check = "SELECT * FROM pws_gebruiker WHERE gebruikersnaam='$gebruikersnaam'";
+        $resultaat_check = mysqli_query($verbinding, $query_check);
+        while ($row = mysqli_fetch_array($resultaat_check))
+        {
+            echo json_encode(array("loginstatus" => "ERROR", "error" => "userexists"));
+            $close = mysqli_close($verbinding);
+            exit();
+        }
         mkdir('img/'.$gebruikersnaam, 0777, true);
 
       $my_file = 'gebruiker.txt';
@@ -28,6 +35,7 @@
         "INSERT INTO pws_gebruiker(gebruikersnaam,wachtwoord,email,voornaam,tussenvoegsel,achternaam,geboortedatum,client_code,isverzorger,profielfoto)
         VALUES('$gebruikersnaam','$wachtwoord','$email','$voornaam','$tussenvoegsel','$achternaam','$geboortedatum','$client_code','$isverzorger','$profielfoto')";
         $resultaat = mysqli_query($verbinding, $query);
+
         echo json_encode(array("loginstatus" => "OK"));
         $close = mysqli_close($verbinding);
         exit();

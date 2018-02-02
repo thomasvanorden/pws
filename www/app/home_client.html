@@ -46,7 +46,7 @@
 		   }
 	   </script>
 		 <script type="text/javascript">
-		 	function createNotification(titel, inhoud, picpath, afzendernaam, afzenderpf)
+		 	function createNotification(titel, inhoud, picpath, afzendernaam, afzenderusername, afzenderpf)
 			{
 				var notif = document.createElement('div');
 				notif.className = "notification";
@@ -54,10 +54,11 @@
 				var nheader = document.createElement('div');
 				nheader.className = "notifheader";
 				var nhimg = document.createElement('img');
-				if (afzenderpf == "user.png" || afzenderpf == "")
+				if (afzenderpf == "user.png" || afzenderpf == "" || afzenderpf == null)
 					nhimg.src = "./res/img/user.png"
 				else
-					nhimg.src = window.sessionStorage._hostname + "img/" + afzenderpf;
+					nhimg.src = window.sessionStorage._hostname + "img/" + afzenderusername + "/" + afzenderpf;
+
 				var nhh = document.createElement('h1');
 				nhh.innerHTML = afzendernaam;
 				var nhp = document.createElement('p');
@@ -100,7 +101,7 @@
 									for (i = 0; i < Object.keys(response).length; i++)
 									{
 										if (displayNotifs.get(response[i].notif_id) == undefined)
-											displayNotifs.set(response[i].notif_id, createNotification(response[i].titel, response[i].inhoud, response[i].sender + "/" + response[i].picname, response[i].sender_name, response[i].sender + "/" + response[i].profielfoto));
+											displayNotifs.set(response[i].notif_id, createNotification(response[i].titel, response[i].inhoud, response[i].sender + "/" + response[i].picname, response[i].sender_name, response[i].sender, response[i].profielfoto));
 			/*
 										for (i = 0; i < Object.keys(data).length; i++)
 										{
