@@ -8,6 +8,7 @@
 		<link rel="stylesheet" type="text/css" href="./css/start.css"/>
 		<script src="./js/common.js"></script>
 		<script src="js/jquery.min.js"></script>
+		<script src="js/forminput.js"></script>
 	</head>
 	<body>
 		<header>
@@ -26,8 +27,13 @@
 			{
 				$("#insert").click(function(event)
 				{
-					var user = document.forms["form1"]["gebruikersnaam"].value;
-					var pass = document.forms["form1"]["password"].value;
+					var user = document.forms["form1"]["gebruikersnaam"];
+					var pass = document.forms["form1"]["password"];
+
+					var validData = true;
+					if (isEmpty(user)) validData = false;
+					if (isEmpty(pass)) validData = false;
+					if(validData)
 					{
 						var fd = new FormData(document.forms["form1"]);
 						var xhr = new XMLHttpRequest();
@@ -38,18 +44,16 @@
 						  if (xhr.readyState === 4) {
 							    var response = JSON.parse(xhr.responseText);
 							      if (xhr.status === 200 && response.loginstatus === 'OK') {
-									  $("#insert").val('Je bent geregistreerd!');
 										window.sessionStorage.username = response.username;
 									  window.location = "form_notificatie.html";
 							      } else {
-	  								  alert("Helaas kan er geen verbinding met de server tot stand gebracht worden.");
+	  								  alert("Onjuiste inloggegevens.");
 							      }
 							}
 						}
 					}
 
 					event.preventDefault();
-					//return false;
 				});
 			});
 		</script>

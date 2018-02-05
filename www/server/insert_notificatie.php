@@ -2,14 +2,9 @@
     include('common.php');
     include('file_transfer.php');
     header("Access-Control-Allow-Origin: *");
-    
+
   if (!EMPTY($_POST))
   {
-    $my_file = 'notificatie.txt';
-    $handle = fopen($my_file, 'w') or die('Cannot open file: ' . $my_file);
-    file_put_contents("notificatie.txt",print_r($_POST, true));
-    fclose($handle);
-
     $afzender_gebruikersnaam=$_POST["gebruikersnaam"];
     $query_cc = "SELECT client_code FROM pws_gebruiker WHERE gebruikersnaam = '$afzender_gebruikersnaam'";
     $resultaat_cc = mysqli_query($verbinding, $query_cc);

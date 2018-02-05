@@ -1,8 +1,6 @@
 <?php
     include('common.php');
     header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Credentials: true");
-    header("Access-Control-Allow-Methods: *");
 
   if (!EMPTY($_POST)) {
     $geboortedatum = $_POST["geboortedatum"];
@@ -15,4 +13,5 @@
     }
     echo json_encode(array("loginstatus" => "ERROR"));
   }
+  $close = mysqli_close($verbinding);
 ?>

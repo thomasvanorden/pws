@@ -1,6 +1,0 @@
-Array
-(
-    [titel] => 
-    [inhoud] => erwer
-    [pictogram] => 
-)

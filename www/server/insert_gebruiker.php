@@ -2,8 +2,6 @@
     include('common.php');
     include('file_transfer.php');
     header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Credentials: true");
-    header("Access-Control-Allow-Methods: *");
     if (!EMPTY($_POST)) {
         $gebruikersnaam=$_POST['gebruikersnaam'];
 
@@ -17,10 +15,6 @@
         }
         mkdir('img/'.$gebruikersnaam, 0777, true);
 
-      $my_file = 'gebruiker.txt';
-      $handle = fopen($my_file, 'w') or die('Cannot open file:  '.$my_file);
-      file_put_contents("gebruiker.txt",print_r($_POST, true));
-      fclose($handle);
         $wachtwoord=md5($_POST['wachtwoord']);
         $email=$_POST['email'];
         $voornaam=$_POST['voornaam'];

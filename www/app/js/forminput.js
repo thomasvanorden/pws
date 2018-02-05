@@ -44,5 +44,9 @@ function checkDate(dateString) {
         return invalidField(dateString, false);
 
     var regEx = /^\d{4}-\d{2}-\d{2}$/;
-    return dateString.value.match(regEx) != null;
+    var match = dateString.value.match(regEx) != null;
+    if (match)
+      return true;
+    else
+      return invalidField(dateString,false);
 }

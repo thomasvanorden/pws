@@ -13,4 +13,5 @@
         }
         echo json_encode(array("loginstatus" => "ERROR"));
     }
+    $close = mysqli_close($verbinding);
 ?>

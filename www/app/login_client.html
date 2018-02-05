@@ -6,6 +6,7 @@
 		<title>Inloggen client</title>
 		<link rel="stylesheet" type="text/css" href="./css/start.css"/>
 		<script src="js/jquery.min.js"></script>
+		<script src="js/forminput.js"></script>
 	</head>
 	<body>
 		<header>
@@ -24,9 +25,13 @@
 			{
 				$("#insert").click(function(event)
 				{
-					var geboortedatum = document.forms["form1"]["geboortedatum"].value;
-					var client_code = document.forms["form1"]["client_code"].value;
-					// if()
+					var geboortedatum = document.forms["form1"]["geboortedatum"];
+					var client_code = document.forms["form1"]["client_code"];
+
+					var validData = true;
+					if (!checkDate(geboortedatum)) validData = false;
+					if (isEmpty(client_code)) validData = false;
+					if (validData)
 					{
 						var fd = new FormData(document.forms["form1"]);
 						var xhr = new XMLHttpRequest();
@@ -47,7 +52,6 @@
 						}
 					}
 					event.preventDefault();
-					//return false;
 				});
 			});
 		</script>
