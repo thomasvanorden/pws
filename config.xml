@@ -8,5 +8,5 @@
         Timo en Thomas
     </author>
     <content src="app/index.html" />
-    <access origin="*" />
+    <access origin="192.168.178.11" />
 </widget>
