@@ -102,20 +102,6 @@
 									{
 										if (displayNotifs.get(response[i].notif_id) == undefined)
 											displayNotifs.set(response[i].notif_id, createNotification(response[i].titel, response[i].inhoud, response[i].sender + "/" + response[i].picname, response[i].sender_name, response[i].sender, response[i].profielfoto));
-			/*
-										for (i = 0; i < Object.keys(data).length; i++)
-										{
-											var found_match = true;
-											for (let elem of lnotifIter) {
-														if (displayNotifs.get(data[i].notif_id) == elem){
-															found_match = false;
-														}
-												}
-												if (!found_match){
-													displayNotifs.delete(data[i].notif_id);
-												}
-										}
-			*/
 									}
 								} else {
 									alert("Helaas kan er geen verbinding met de server tot stand gebracht worden.");

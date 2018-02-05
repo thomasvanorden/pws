@@ -16,9 +16,25 @@
     </form>
 
     <script>
+		function ping(){
+			$.ajax({
+				 url: window.sessionStorage._hostname + "get_notificaties.php",
+				 async: false,
+				 data: "client_code=555",
+				 success: function(result){
+						alert('U bent verbonden met het juiste netwerk');
+						return true;
+				 },
+				 error: function(result){
+						 alert('U heeft een verkeerd IP-adres ingevoerd.');
+						 return false;
+				 }
+			});
+	 }
 		$("#submit").click(function(event){
 			event.preventDefault();
 			window.sessionStorage._hostname = "http://" + document.forms["form1"]["ip_adres"].value + "/pws/www/server/";
+			if (ping())
 			window.location = "start.html";
 		});
     </script>
