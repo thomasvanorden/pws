@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Alzheimer App
 Hieronder zullen wij u stap voor stap door het proces lopen om ons project op te starten vanaf de broncode, of om de app
 te downloaden op uw smartphone, om de van te voren gebouwde app te testen.
