@@ -5,9 +5,10 @@ Daarnaast zullen wij u ook uitleggen hoe u een XAMPP server kunt opstarten met d
 ## App
 ### Benodigdheden
 U heeft een aantal dingen nodig voordat u kunt beginnen:
-* Smartphone met een van de volgende besturingssystemen
+* Smartphone met een internetverbindingen en een van de volgende besturingssystemen
     * Android vanaf versie 6.1.2
     * Windows Phone vanaf versie 4.4.3
+    * iOS vanaf 4.3.1
 * Een computer met een van de volgende besturingssystemen
     * Windows
     * Mac OSX
@@ -18,22 +19,26 @@ U heeft een aantal dingen nodig voordat u kunt beginnen:
    * Gebruik deze copmuter voor XAMPP en de PhoneGap Desktop Application
 
 ### Broncode + Phonegap
-Om onze app op te starten met de broncode, moet Phonegap (CLI?) eerst geïnstalleerd worden.
-Instructies hiervoor staan in het verslag. <zeggen we dit? of nog een keer uitleggen: JA!>
+Om onze app op te starten met de broncode, moet Phonegap eerst geïnstalleerd worden.
+Wij hebben gebruik gemaakt van de command-line interface voor Phonegap die te verkrijgen is via Node.js
+Eerst moet hiervoor dus Node.js geinstalleerd worden.
 
-Als Phonegap geïnstalleerd is, downloadt u de broncode vanaf Github: https://github.com/thomasvanorden/pws.
-U klikt op de groene knop rechtsboven met de tekst "Clone or download".
-Dan verschijnt een klein venster, en klikt u op "Download ZIP".
+Dit is het makkelijkst via de officiele website: https://nodejs.org/.
+Als Node.js eenmaal geïnstalleerd is, opent u een normale terminal op uw PC, en typt in: ‘npm install -g phonegap’.
+Dit zegt tegen het programma ‘Node Package Manager (npm)’, die meegeleverd wordt met Node.js, om Phonegap “globaal” (-g) te installeren, dus voor alle gebruikers van die computer.
+Na het installatie process bladert u via de terminal naar de map die het Phonegap project (XAMPP/htdocs/pws) bevat.
+Daarna kunt u een live preview van de app starten met het command ‘phonegap serve’.
 
-Nadat het bestand is gedownload pakt u het uit op de gewenste locatie; dit heeft geen invloed op de werking van de app. <ff alleen app kopieren>
-Daarna start u Phonegap op, en <project opstarten + verbinding met telefoon enzo>
+Het is ook aangeraden om de mobiele app van Phonegap te downloaden, om gebruik te maken van de live preview-functie van Phonegap. Deze app is te vinden in de Google Play Store, de Apple App Store, en de Microsoft Windows Store.
+Als je beide applicaties (desktop en mobiel) eenmaal hebt gedownload, is het heel makkelijk om een Phonegap project te openen op een smartphone. Echter is het ook mogelijk om met uw browser verbinding te leggen met de Phonegap server, in plaats van de Phonegap Developer App op uw smartphone.
 
 Wij hadden u graag onze app die wij met PhoneGap Build hebben gemaakt willen geven, echter hadden wij hierbij een probleem:
 De app kon niet verbinden met een server die op een andere host draaide dan waarmee de telefoon verbonden was. Dit komt waarschijnlijk omdat de PhoneGap Build service tijdens het bouwen van de app, geen (sub)domain-crossing toestaat. Oftewel, door PhoneGap Build te gebruiken kunnen wij geen app "bouwen" die verbinding legt met een server op een andere host, dan waar de telefoon zelf mee is verbonden. Dit betekent dat onze app geen gegevens kan versturen of opvragen bij de server, hierdoor heeft de app totaal geen functionaliteit meer. Gelukkig kan u in combinatie met bovenstaande en onderstaande instructies alsnog de app testen!
 
 ## Server
 Om een server op te starten voor onze app, moet XAMPP eerst geïnstalleerd worden.
-Instructies hiervoor staan in het verslag. <zeggen we dit? of nog een keer uitleggen: JA!>
+Als eerst downloadt u het installatiebestand via de officiele website: ‘https://www.apachefriends.org/download.html’.
+Hier krijg je de keuze uit een aantal platforms en daarbinnen is er een aantal versies. Na het installatiebestand gedownload te hebben, volgt een simpele installatie procedure. Zodra de software geïnstalleerd is, is het gelijk klaar voor gebruik; het is niet eerst nodig om een aantal configuratiebestanden te bewerken. Als de XAMPP Control Panel is geopend (op de Mac versie) krijgt u drie opties; elke optie om respectievelijk de MySQL server, de FTP server, en de Apache server te starten of te stoppen. Wij hebben alleen de MySQL en Apache HTTP server gebruikt, en alleen die twee hoeven dus opgestart te worden.
 
 Als XAMPP is geïnstalleerd, bladert u in de verkenner naar de XAMPP-map.
 Plak vervolgens het mapje "pws" uit de gedownloade broncode (zie stappen hierboven) in het mapje htdocs (XAMPP/htdocs) in de installatiemap van XAMPP.
@@ -47,14 +52,12 @@ Uiteraard moet het opstarten van de app in de praktijk niet op deze wijze verlop
 In dit veld vult u alleen het IP(v4)-adres in van de computer waar de server op staat.
 
 ## Testen
-Om onze app goed te kunnen testen, is het handig als u na het opstarten van de app en alle bovenstaande stappen:
-* Een cliënt aanmaakt via de "registreer cliënt"-knop op het homescherm 
-   * Schrijf of kopieer de client code
-* Hierna een familielid/verzorger registreert via de "registreer verzorger/familielid"-knop
-* Inloggen familielid
-* Notificatie aanmaken
-* Inloggen client
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+Om onze app goed te kunnen testen, is het handig als u na het opstarten van de app de onderstaande stappen volgt:
+1. U komt terecht op het startscherm van de app, hier klikt u op "Client registreren"
+2. Hier vult u de gevraagde gegevens in van de client.
+3. Als u alles correct invult, wordt u doorgestuurd naar homescherm voor de client. Echter krijgt u eerst een notificatie met daarin de unieke code die speciaal voor deze client is gegenereerd. Schrijf deze ergens op, of kopieer het naar uw klembord. Deze code is niet via de app opnieuw op te vragen.
+4. Vervolgens gaat u, eventueel op een ander apparaat, naar het start scherm van de app, en klikt u hier op "Familielid/verzorger registreren".
+5. Ook hier vult u weer een aantal gegevens in. In dit formulier dient u ook de eerder ontvangen client-code in te voeren om het familielid of de verzorger te koppelen aan de juiste client.
+6. Als deze gegevens correct zijn ingevuld wordt u doorgestuurd naar het formulier om een notificatie te sturen.
+7. Stuur hier een (of meerdere) berichten naar de client. In dit bericht kunt u een titel invoeren, een inhoud invoeren, en eventueel een afbeelding uploaden.
+8. Op het homescherm voor de client verschijnt direct een notificatie met de door u ingevulde gegevens.
