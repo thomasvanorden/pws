@@ -22,10 +22,10 @@ Om een server op te starten voor onze app, moet XAMPP eerst geïnstalleerd worde
 Als eerst downloadt u het installatiebestand via de officiele website: ‘https://www.apachefriends.org/download.html’.
 Hier krijg je de keuze uit een aantal platforms en daarbinnen is er een aantal versies. Na het installatiebestand gedownload te hebben, volgt een simpele installatie procedure. Zodra de software geïnstalleerd is, is het gelijk klaar voor gebruik; het is niet eerst nodig om een aantal configuratiebestanden te bewerken. Als de XAMPP Control Panel is geopend (op de Mac versie) krijgt u drie opties; elke optie om respectievelijk de MySQL server, de FTP server, en de Apache server te starten of te stoppen. Wij hebben alleen de MySQL en Apache HTTP server gebruikt, en alleen die twee hoeven dus opgestart te worden.
 
-Als XAMPP geïnstalleerd is, downloadt u de broncode vanaf Github: https://github.com/thomasvanorden/pws. U klikt op de groene knop rechtsboven met de tekst "Clone or download". Dan verschijnt een klein venster, en klikt u op "Download ZIP". 
+Vervolgens downloadt u de broncode vanaf Github: https://github.com/thomasvanorden/pws. U klikt op de groene knop rechtsboven met de tekst "Clone or download". Dan verschijnt een klein venster, en klikt u op "Download ZIP". 
 Plak vervolgens het mapje "pws" uit de gedownloade broncode in het mapje htdocs (XAMPP/htdocs) in de installatiemap van XAMPP.
 
-Start vervolgens XAMPP op waarin u de Apache HTTP server, en de MySQL server op kan starten.
+Start vervolgens de XAMPP Control Panel op waarin u de Apache HTTP server, en de MySQL server op start.
 Wacht todat deze beiden een groen bolletje krijgen.
 U kunt nu verbinding leggen met de server!
 
@@ -48,9 +48,9 @@ Wij hadden u graag onze app die wij met PhoneGap Build hebben gemaakt willen gev
 De app kon niet verbinden met een server die op een andere host draaide dan waarmee de telefoon verbonden was. Dit komt waarschijnlijk omdat de PhoneGap Build service tijdens het bouwen van de app, geen (sub)domain-crossing toestaat. Oftewel, door PhoneGap Build te gebruiken kunnen wij geen app "bouwen" die verbinding legt met een server op een andere host, dan waar de telefoon zelf mee is verbonden. Dit betekent dat onze app geen gegevens kan versturen of opvragen bij de server, hierdoor heeft de app totaal geen functionaliteit meer. Gelukkig kan u in combinatie met bovenstaande en onderstaande instructies alsnog de app testen!
 
 ## Gebruik
-Zoals u misschien is opgevallen tijdens het opstarten van de app, is dat de app als eerste om een IP-adres vraagt, deze heeft de app nodig om met de server op de juiste wijze contact te leggen.
+Zoals u misschien is opgevallen tijdens het opstarten van de app, is dat de app als eerste om een IP-adres vraagt, deze heeft de app nodig om met juiste de server te verbinden.
 Uiteraard moet het opstarten van de app in de praktijk niet op deze wijze verlopen, maar voor het "simpelweg" thuis testen is dit de handigste mogelijkheid.
-In dit veld vult u alleen het IP(v4)-adres in van de computer waar de server op staat.
+In dit veld vult u alleen het IP(v4)-adres in van de host/computer waar de server op staat.
 
 ## Testen
 Om onze app goed te kunnen testen, is het handig als u na het opstarten van de app de onderstaande stappen volgt:
