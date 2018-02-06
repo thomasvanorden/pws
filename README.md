@@ -25,6 +25,11 @@ Hier krijg je de keuze uit een aantal platforms en daarbinnen is er een aantal v
 Vervolgens downloadt u de broncode vanaf Github: https://github.com/thomasvanorden/pws. U klikt op de groene knop rechtsboven met de tekst "Clone or download". Dan verschijnt een klein venster, en klikt u op "Download ZIP". 
 Plak vervolgens het mapje "pws" uit de gedownloade broncode in het mapje htdocs (XAMPP/htdocs) in de installatiemap van XAMPP.
 
+Open het bestand "common.php" (te vinden in pws/www/server/common.php) in een tekst/code editor naar keuze.
+Verander hier de waarde van de variabele "$username" en "$password" in de door u aangemaakte gebruikersnaam en wachtwoord.
+Standaard is dit, als u niks anders heeft ingesteld, als $username = root en het wachtwoord is standaard leeg/uitgeschakeld in XAMPP.
+Sla nu het bestand common.php weer op op de locatie pws/www/server/ (huidge bestand overschrijven dus).
+
 Start vervolgens de XAMPP Control Panel op waarin u de Apache HTTP server, en de MySQL server op start.
 Wacht todat deze beiden een groen bolletje krijgen.
 U kunt nu verbinding leggen met de server!
