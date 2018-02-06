@@ -32,7 +32,27 @@ Sla nu het bestand common.php weer op op de locatie pws/www/server/ (huidge best
 
 Start vervolgens de XAMPP Control Panel op waarin u de Apache HTTP server, en de MySQL server op start.
 Wacht todat deze beiden een groen bolletje krijgen.
-U kunt nu verbinding leggen met de server!
+U kunt nu verbinding leggen met de server.
+
+### Om onze database toe te voegen:
+* Ga nu in uw broswer naar "localhost/phpmyamdin".
+ * Hier kan u inloggen, als u dit zo heeft ingesteld, en vervolgens ziet u de PhpMyAmdin omgeving.
+* Klik hier linksboven op "Nieuw+"
+ * U maakt nu een nieuwe database aan
+* Vul nu in het veld "databasenaam" de waarde "pws" in
+ * Het is zeer belangrijk dat u dit goed invult, aangezien de app anders niet naar behoren zal werken
+* Klik nu op "aanmaken"
+ * De database is nu aangemaakt, nu alleen de juiste tabellen nog toevoegen:
+* Klik bovenaan op "importeren"
+* Selecteer nu het bestand "pws.sql" (dit staat in pws/pws.sql, dus gewoon in de broncode gedownload vanaf Github zoals hierboven beschreven)
+ * Laat alle opties zo staan zoals deze standaard staan
+* Klik nu onderaan op "Starten"
+* De database is nu gemaakt en u ziet als het goed is 3 tabellen:
+ * pws_client
+ * pws_gebruiker
+ * pws_notificaties
+ 
+De database en server zijn nu klaar voor gebruik.
 
 ## App
 Om onze app op te starten met de broncode, moet Phonegap eerst geïnstalleerd worden.
