@@ -2,8 +2,7 @@
 Hieronder zullen wij u stap voor stap door het proces lopen om ons project op te starten vanaf de broncode.
 Daarnaast zullen wij u ook uitleggen hoe u een XAMPP server kunt opstarten met de juiste bestanden, om onze applicatie mee te testen, aangezien deze zeer beperkte functionaliteit heeft zonder server.
 
-## App
-### Benodigdheden
+## Benodigdheden
 U heeft een aantal dingen nodig voordat u kunt beginnen:
 * Smartphone met een internetverbindingen en een van de volgende besturingssystemen
     * Android vanaf versie 6.1.2
@@ -14,11 +13,23 @@ U heeft een aantal dingen nodig voordat u kunt beginnen:
     * Mac OSX
 * Een werkend netwerk
     * Een host met een vast lokaal IPv4-adres
-* Telefooon en computer die op hetzelfde WiFi-netwerk zijn aangesloten
+* Telefoon en computer die op hetzelfde WiFi-netwerk zijn aangesloten
    * Gebruik deze telefoon voor de PhoneGap app
-   * Gebruik deze copmuter voor XAMPP en de PhoneGap Desktop Application
+   * Gebruik deze computer voor XAMPP en de PhoneGap Desktop Application
 
-### Broncode + Phonegap
+## Server
+Om een server op te starten voor onze app, moet XAMPP eerst geïnstalleerd worden.
+Als eerst downloadt u het installatiebestand via de officiele website: ‘https://www.apachefriends.org/download.html’.
+Hier krijg je de keuze uit een aantal platforms en daarbinnen is er een aantal versies. Na het installatiebestand gedownload te hebben, volgt een simpele installatie procedure. Zodra de software geïnstalleerd is, is het gelijk klaar voor gebruik; het is niet eerst nodig om een aantal configuratiebestanden te bewerken. Als de XAMPP Control Panel is geopend (op de Mac versie) krijgt u drie opties; elke optie om respectievelijk de MySQL server, de FTP server, en de Apache server te starten of te stoppen. Wij hebben alleen de MySQL en Apache HTTP server gebruikt, en alleen die twee hoeven dus opgestart te worden.
+
+Als XAMPP geïnstalleerd is, downloadt u de broncode vanaf Github: https://github.com/thomasvanorden/pws. U klikt op de groene knop rechtsboven met de tekst "Clone or download". Dan verschijnt een klein venster, en klikt u op "Download ZIP". 
+Plak vervolgens het mapje "pws" uit de gedownloade broncode in het mapje htdocs (XAMPP/htdocs) in de installatiemap van XAMPP.
+
+Start vervolgens XAMPP op waarin u de Apache HTTP server, en de MySQL server op kan starten.
+Wacht todat deze beiden een groen bolletje krijgen.
+U kunt nu verbinding leggen met de server!
+
+## App
 Om onze app op te starten met de broncode, moet Phonegap eerst geïnstalleerd worden.
 Wij hebben gebruik gemaakt van de command-line interface voor Phonegap die te verkrijgen is via Node.js
 Eerst moet hiervoor dus Node.js geinstalleerd worden.
@@ -26,6 +37,7 @@ Eerst moet hiervoor dus Node.js geinstalleerd worden.
 Dit is het makkelijkst via de officiele website: https://nodejs.org/.
 Als Node.js eenmaal geïnstalleerd is, opent u een normale terminal op uw PC, en typt in: ‘npm install -g phonegap’.
 Dit zegt tegen het programma ‘Node Package Manager (npm)’, die meegeleverd wordt met Node.js, om Phonegap “globaal” (-g) te installeren, dus voor alle gebruikers van die computer.
+
 Na het installatie process bladert u via de terminal naar de map die het Phonegap project (XAMPP/htdocs/pws) bevat.
 Daarna kunt u een live preview van de app starten met het command ‘phonegap serve’.
 
@@ -34,17 +46,6 @@ Als je beide applicaties (desktop en mobiel) eenmaal hebt gedownload, is het hee
 
 Wij hadden u graag onze app die wij met PhoneGap Build hebben gemaakt willen geven, echter hadden wij hierbij een probleem:
 De app kon niet verbinden met een server die op een andere host draaide dan waarmee de telefoon verbonden was. Dit komt waarschijnlijk omdat de PhoneGap Build service tijdens het bouwen van de app, geen (sub)domain-crossing toestaat. Oftewel, door PhoneGap Build te gebruiken kunnen wij geen app "bouwen" die verbinding legt met een server op een andere host, dan waar de telefoon zelf mee is verbonden. Dit betekent dat onze app geen gegevens kan versturen of opvragen bij de server, hierdoor heeft de app totaal geen functionaliteit meer. Gelukkig kan u in combinatie met bovenstaande en onderstaande instructies alsnog de app testen!
-
-## Server
-Om een server op te starten voor onze app, moet XAMPP eerst geïnstalleerd worden.
-Als eerst downloadt u het installatiebestand via de officiele website: ‘https://www.apachefriends.org/download.html’.
-Hier krijg je de keuze uit een aantal platforms en daarbinnen is er een aantal versies. Na het installatiebestand gedownload te hebben, volgt een simpele installatie procedure. Zodra de software geïnstalleerd is, is het gelijk klaar voor gebruik; het is niet eerst nodig om een aantal configuratiebestanden te bewerken. Als de XAMPP Control Panel is geopend (op de Mac versie) krijgt u drie opties; elke optie om respectievelijk de MySQL server, de FTP server, en de Apache server te starten of te stoppen. Wij hebben alleen de MySQL en Apache HTTP server gebruikt, en alleen die twee hoeven dus opgestart te worden.
-
-Als XAMPP is geïnstalleerd, bladert u in de verkenner naar de XAMPP-map.
-Plak vervolgens het mapje "pws" uit de gedownloade broncode (zie stappen hierboven) in het mapje htdocs (XAMPP/htdocs) in de installatiemap van XAMPP.
-
-Start vervolgens XAMPP waaarin u de Apache HTTP server, en de MySQL server op kan starten. Wacht todat deze beiden een groen bolletje krijgen.
-U kunt nu verbinding leggen met de server!
 
 ## Gebruik
 Zoals u misschien is opgevallen tijdens het opstarten van de app, is dat de app als eerste om een IP-adres vraagt, deze heeft de app nodig om met de server op de juiste wijze contact te leggen.
